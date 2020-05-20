@@ -718,3 +718,146 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 4499)
 
 
+Started GET "/" for ::1 at 2020-05-20 13:02:26 +0300
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 7.5ms | Allocations: 3524)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+yarn run v1.22.4
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+
+error Command "webpack" not found.
+
+Completed 500 Internal Server Error in 1043ms (ActiveRecord: 0.7ms | Allocations: 24759)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9
+Started GET "/" for ::1 at 2020-05-20 13:04:38 +0300
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 8.9ms | Allocations: 3412)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+yarn run v1.22.4
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+
+error Command "webpack" not found.
+
+Completed 500 Internal Server Error in 993ms (ActiveRecord: 1.5ms | Allocations: 12640)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9
+Started GET "/" for ::1 at 2020-05-20 13:05:10 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 668)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+yarn run v1.22.4
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+
+error Command "webpack" not found.
+
+Completed 500 Internal Server Error in 1315ms (ActiveRecord: 0.6ms | Allocations: 5800)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9
+Started GET "/" for ::1 at 2020-05-20 13:06:00 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 4.4ms | Allocations: 3412)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/public/packs
+[Webpacker] Hash: 15d1bb7b54cf6326b9ba
+Version: webpack 4.43.0
+Time: 2062ms
+Built at: 05/20/2020 1:06:04 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9afcbb5693aa87623e69.js    124 KiB  application  [emitted] [immutable]  application
+js/application-9afcbb5693aa87623e69.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9afcbb5693aa87623e69.js js/application-9afcbb5693aa87623e69.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 3597ms (Views: 3591.7ms | ActiveRecord: 0.4ms | Allocations: 11917)
+
+
