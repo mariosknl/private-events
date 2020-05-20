@@ -2603,3 +2603,212 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 0.4ms | Allocations: 5559)
 
 
+Started GET "/users/1" for ::1 at 2020-05-20 16:52:12 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (Duration: 24.3ms | Allocations: 5529)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 500 Internal Server Error in 494ms (ActiveRecord: 4.3ms | Allocations: 159809)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_event_path' for #<#<Class:0x00007f1c64c22888>:0x00007f1c64c20ec0>
+Did you mean?  new_user_path):
+    14:   <%= link_to 'Main Page', root_path %>
+    15:   <%= link_to 'Create New User', new_user_path %>
+    16:   <%= link_to 'Switch Between Users', users_path %>
+    17:   <%= link_to 'Create New Event', new_event_path %>
+    18: 
+    19:     <%= yield %>
+    20:   </body>
+  
+app/views/layouts/application.html.erb:17
+Started GET "/users/1" for ::1 at 2020-05-20 16:52:34 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (Duration: 5.4ms | Allocations: 908)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 21ms (Views: 16.1ms | ActiveRecord: 0.9ms | Allocations: 6907)
+
+
+Started GET "/events/new" for ::1 at 2020-05-20 16:52:37 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 185.5ms | Allocations: 63492)
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 0.2ms | Allocations: 65356)
+
+
+  
+ActionView::Template::Error (undefined method `events_path' for #<#<Class:0x00007f1c645d37c0>:0x00007f1c645d11a0>
+Did you mean?  events_new_path):
+    1: <h1>Create an Event</h1>
+    2: 
+    3: <ul>
+    4: <%= form_for @event do |f| %>
+    5:   <%= f.label :description %>
+    6:   <%= f.text_field :description %>
+    7:   <%= f.text_field :date, placeholder: "2020-08-06" %>
+  
+app/views/events/new.html.erb:4
+Started GET "/users/1" for ::1 at 2020-05-20 16:53:09 +0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (Duration: 22.3ms | Allocations: 4671)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 500 Internal Server Error in 369ms (ActiveRecord: 6.6ms | Allocations: 138733)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `events_new_path' for #<#<Class:0x00007f1c64432768>:0x00007f1c64430580>
+Did you mean?  events_path):
+    14:   <%= link_to 'Main Page', root_path %>
+    15:   <%= link_to 'Create New User', new_user_path %>
+    16:   <%= link_to 'Switch Between Users', users_path %>
+    17:   <%= link_to 'Create New Event', events_new_path %>
+    18: 
+    19:     <%= yield %>
+    20:   </body>
+  
+app/views/layouts/application.html.erb:17
+Started GET "/" for ::1 at 2020-05-20 16:53:19 +0300
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 17.4ms | Allocations: 5545)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 500 Internal Server Error in 436ms (ActiveRecord: 3.8ms | Allocations: 142069)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `events_new_path' for #<#<Class:0x00007f9f98b04f48>:0x00007f9f98b1fc80>
+Did you mean?  events_path):
+    14:   <%= link_to 'Main Page', root_path %>
+    15:   <%= link_to 'Create New User', new_user_path %>
+    16:   <%= link_to 'Switch Between Users', users_path %>
+    17:   <%= link_to 'Create New Event', events_new_path %>
+    18: 
+    19:     <%= yield %>
+    20:   </body>
+  
+app/views/layouts/application.html.erb:17
+Started GET "/" for ::1 at 2020-05-20 16:53:49 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2704)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 17ms (Views: 14.9ms | ActiveRecord: 0.5ms | Allocations: 8123)
+
+
+Started GET "/events/new" for ::1 at 2020-05-20 16:53:51 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 13.7ms | Allocations: 2196)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 67ms (Views: 28.9ms | ActiveRecord: 2.2ms | Allocations: 14172)
+
+
+Started GET "/users" for ::1 at 2020-05-20 16:53:59 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 11.7ms | Allocations: 2525)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.9ms | Allocations: 6872)
+
+
+Started GET "/sessions/new.13" for ::1 at 2020-05-20 16:54:03 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 422)
+
+
+Started GET "/" for ::1 at 2020-05-20 16:54:03 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2510)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 31ms (Views: 27.3ms | ActiveRecord: 0.7ms | Allocations: 6836)
+
+
+Started GET "/events/new" for ::1 at 2020-05-20 16:54:05 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 7.2ms | Allocations: 491)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 37ms (Views: 29.7ms | ActiveRecord: 0.6ms | Allocations: 5481)
+
+
+Started POST "/events" for ::1 at 2020-05-20 16:54:19 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"authenticity_token"=>"YANoy6X+98YSkuLHAyhBOcB7K67sc8v9CI0kJvRxybv3gIsFxre5D7pu+ffG+6ZIyce/HiGFvsTfD78v8p+Qyg==", "event"=>{"description"=>"Stars Shining", "date"=>"", "location"=>""}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:14:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:14:in `create'
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?)[0m  [["location", ""], ["created_at", "2020-05-20 13:54:19.474036"], ["updated_at", "2020-05-20 13:54:19.474036"], ["creator_id", 13], ["description", "Stars Shining"]]
+  ↳ app/controllers/events_controller.rb:14:in `create'
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:14:in `create'
+Completed 500 Internal Server Error in 172ms (ActiveRecord: 7.4ms | Allocations: 49490)
+
+
+  
+NoMethodError (undefined method `events_show_path' for #<EventsController:0x0000555a7b7f6d38>
+Did you mean?  events_path):
+  
+app/controllers/events_controller.rb:15:in `create'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]

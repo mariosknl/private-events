@@ -1,0 +1,11 @@
+<h1>Create an Event</h1>
+
+<ul>
+<%= form_for @event do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.text_field :date, placeholder: "2020-08-06" %>
+  <%= f.text_field :location, placeholder: "Greece/Patras" %>
+  <%= f.submit :Create %>
+<% end %>
+</ul>
