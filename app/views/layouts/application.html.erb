@@ -10,7 +10,9 @@
   </head>
 
   <body>
+  <h1>Welcome  <%= User.find(@current_user_id).name.upcase unless session[:current_user_id].nil? %>! </h1>
   <%= link_to 'Create New User', new_user_path %>
+  <%= link_to 'Switch Between Users', users_path %>
     <%= yield %>
   </body>
 </html>
