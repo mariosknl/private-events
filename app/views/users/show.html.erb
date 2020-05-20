@@ -1,6 +1,12 @@
 <h1>Show User</h1>
 
-
-<%= @user.name %>
+<h3>Events of <%= @user.name %> </h3>
+<ol>
+  <% @events.each do |event| %>
+    <li>
+      <%= event.description %>
+    </li>
+  <% end %>
+</ol>
 
 
