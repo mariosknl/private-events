@@ -1,2 +1,12 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<h1>Events Calendar</h1>
+
+<ol>
+<% @events.each do |event| %>
+  <li>
+    <%= event.description %> |
+    <%= event.date %> |
+    <%= event.location %> |
+    <%= link_to 'Show', event_path(event.id) %>
+  </li>
+<% end %>
+</ol>

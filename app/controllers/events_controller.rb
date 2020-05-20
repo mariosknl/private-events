@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   before_action :current_user
 
-  def index; end
+  def index
+    @events = Event.all.order('created_at DESC')
+  end
 
   def new
     @event = User.find(@current_user_id).events.build
