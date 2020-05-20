@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
   resources :users
   
-  root to: 'users#show'
+  root to: 'users#index'
   
 end

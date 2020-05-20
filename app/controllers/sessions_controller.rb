@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    puts '_____ LOOK HERE ______'
-    p params
     @id = params[:format]
     session[:current_user_id] = @id
     redirect_to root_path
