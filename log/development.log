@@ -1,0 +1,720 @@
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200520091142)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520091142"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-05-20 09:17:18.574390"], ["updated_at", "2020-05-20 09:17:18.574390"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-05-20 12:33:02 +0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1288)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/marioskanellopoulos/Desktop/Microverse/Ruby_on_Rails/private-events/public/packs
+[Webpacker] Hash: 15d1bb7b54cf6326b9ba
+Version: webpack 4.43.0
+Time: 1570ms
+Built at: 05/20/2020 12:33:06 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9afcbb5693aa87623e69.js    124 KiB  application  [emitted] [immutable]  application
+js/application-9afcbb5693aa87623e69.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9afcbb5693aa87623e69.js js/application-9afcbb5693aa87623e69.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 3264ms (Views: 3252.4ms | ActiveRecord: 0.4ms | Allocations: 21634)
+
+
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from block in execute at /Users/marioskanellopoulos/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/rake-13.0.1/lib/rake/task.rb:281)
+Started GET "/" for ::1 at 2020-05-20 12:34:19 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 21.9ms | Allocations: 734)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.1ms | Allocations: 5181)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>PrivateEvents</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%= link_to 'Create New User' users_create_path %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>PrivateEvents</title>
+5:        <%= csrf_meta_tags %>
+6:        <%= csp_meta_tag %>
+7:    
+8:        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+9:        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+10:      </head>
+11:    
+12:      <body>
+13:      <%= link_to 'Create New User' users_create_path %>
+14:        <%= yield %>
+15:      </body>
+16:    </html>
+  
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected local variable or method, expecting ')'
+Started GET "/" for ::1 at 2020-05-20 12:34:26 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 742)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.1ms | Allocations: 5605)
+
+
+Started GET "/users/create" for ::1 at 2020-05-20 12:34:28 +0300
+Processing by UsersController#create as HTML
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 603)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:21:in `user_params'
+app/controllers/users_controller.rb:7:in `create'
+Started GET "/users/create" for ::1 at 2020-05-20 12:35:08 +0300
+Processing by UsersController#create as HTML
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 596)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:21:in `user_params'
+app/controllers/users_controller.rb:7:in `create'
+Started GET "/" for ::1 at 2020-05-20 12:35:15 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 729)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.1ms | Allocations: 5531)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:35:17 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 97.7ms | Allocations: 63218)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 0.4ms | Allocations: 65967)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fce31b9afd0>:0x00007fce31a77978>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.text_field :name %>
+    5:   <%= f.submit 'Create New User' %>
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:35:43 +0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (20.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 84.2ms | Allocations: 62581)
+Completed 500 Internal Server Error in 97ms (ActiveRecord: 0.5ms | Allocations: 67259)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd84676c1b0>:0x00007fd845b57370>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.text_field :name %>
+    5:   <%= f.submit 'Create New User' %>
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:38:41 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.4ms | Allocations: 75)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 24.0ms | ActiveRecord: 0.0ms | Allocations: 6791)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:38:43 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 3869)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:39:34 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 100.9ms | Allocations: 63109)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 0.0ms | Allocations: 64284)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd8433603a8>:0x00007fd8441795e8>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.label :name %>
+    5:   <%= f.text_field :name %>
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Marios"], ["created_at", "2020-05-20 09:40:57.914317"], ["updated_at", "2020-05-20 09:40:57.914317"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-05-20 12:41:54 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 9.4ms | Allocations: 3197)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 19.0ms | ActiveRecord: 0.6ms | Allocations: 7852)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:41:58 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 90.9ms | Allocations: 63038)
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 0.0ms | Allocations: 63468)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd84493a638>:0x00007fd8433a8d10>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.label :name %>
+    5:   <%= f.text_field :name %>
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:42:22 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 92.0ms | Allocations: 63081)
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 0.0ms | Allocations: 64241)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd844250fe8>:0x00007fd84424a738>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.label :name %>
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/" for ::1 at 2020-05-20 12:42:23 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 733)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.1ms | Allocations: 4923)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:42:25 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 96.5ms | Allocations: 62986)
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 0.0ms | Allocations: 63424)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd844250fe8>:0x00007fd843383998>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4:   <%= f.label :name %>
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:42:32 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 75.7ms | Allocations: 63064)
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 0.0ms | Allocations: 64230)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd84425a070>:0x00007fd8442583d8>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for @user do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started PUT "/__web_console/repl_sessions/070c952c78c2733f0adcb46cca2fbc48" for ::1 at 2020-05-20 12:42:38 +0300
+Started PUT "/__web_console/repl_sessions/070c952c78c2733f0adcb46cca2fbc48" for ::1 at 2020-05-20 12:42:39 +0300
+Started GET "/users/new" for ::1 at 2020-05-20 12:43:38 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 974)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2140)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 0, expected 1..2)):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:44:00 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 154.1ms | Allocations: 123840)
+Completed 500 Internal Server Error in 156ms (ActiveRecord: 0.0ms | Allocations: 125006)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `user' for #<#<Class:0x00007fd8434c8290>:0x00007fd8434c29a8>
+Did you mean?  @user):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for user do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:44:23 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 91.6ms | Allocations: 63089)
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 0.0ms | Allocations: 64255)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd846708138>:0x00007fd846702378>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_for User.new do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:45:02 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 82.3ms | Allocations: 63081)
+Completed 500 Internal Server Error in 85ms (ActiveRecord: 0.0ms | Allocations: 64247)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd848969470>:0x00007fd84894fb88>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_tag User.new do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:45:08 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 82.1ms | Allocations: 63067)
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 0.0ms | Allocations: 64233)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd8488accd0>:0x00007fd848897290>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_tag @user do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/users/new" for ::1 at 2020-05-20 12:46:32 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 76.1ms | Allocations: 63060)
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 0.0ms | Allocations: 64226)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd846782b18>:0x00007fd846780ac0>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_with model: @user do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+Started GET "/" for ::1 at 2020-05-20 12:46:59 +0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 3148)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 14.1ms | ActiveRecord: 1.0ms | Allocations: 7768)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:47:02 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 92.9ms | Allocations: 63028)
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 0.0ms | Allocations: 63472)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x00007fd844252b90>:0x00007fd845af0990>
+Did you mean?  users_new_path):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <%= form_with model: @user do |f| %>
+    4: 
+    5:   
+    6: <% end %>
+  
+app/views/users/new.html.erb:3
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from block in execute at /Users/marioskanellopoulos/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/rake-13.0.1/lib/rake/task.rb:281)
+Started GET "/users/new" for ::1 at 2020-05-20 12:47:51 +0300
+  
+SyntaxError (/Users/marioskanellopoulos/Desktop/Microverse/Ruby_on_Rails/private-events/config/routes.rb:3: syntax error, unexpected string literal, expecting `do' or '{' or '('
+  get 'users/new'
+      ^
+):
+  
+config/routes.rb:3: syntax error, unexpected string literal, expecting `do' or '{' or '('
+config/routes.rb:3: syntax error, unexpected string literal, expecting `do' or '{' or '('
+config/routes.rb:3: syntax error, unexpected string literal, expecting `do' or '{' or '('
+Started GET "/users/new" for ::1 at 2020-05-20 12:48:13 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 241)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 277ms (ActiveRecord: 0.7ms | Allocations: 130567)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `users_new_path' for #<#<Class:0x00007fd84420b650>:0x00007fd84347b648>
+Did you mean?  users_path):
+    10:   </head>
+    11: 
+    12:   <body>
+    13:   <%= link_to 'Create New User', users_new_path %>
+    14:     <%= yield %>
+    15:   </body>
+    16: </html>
+  
+app/views/layouts/application.html.erb:13
+Started GET "/" for ::1 at 2020-05-20 12:48:15 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 628)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 172ms (ActiveRecord: 0.2ms | Allocations: 128266)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `users_new_path' for #<#<Class:0x00007fd84420b650>:0x00007fd8449820f0>
+Did you mean?  users_path):
+    10:   </head>
+    11: 
+    12:   <body>
+    13:   <%= link_to 'Create New User', users_new_path %>
+    14:     <%= yield %>
+    15:   </body>
+    16: </html>
+  
+app/views/layouts/application.html.erb:13
+Started GET "/" for ::1 at 2020-05-20 12:48:21 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 602)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 165ms (ActiveRecord: 0.4ms | Allocations: 128195)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `users_new_path' for #<#<Class:0x00007fd84420b650>:0x00007fd844229c40>
+Did you mean?  users_path):
+    10:   </head>
+    11: 
+    12:   <body>
+    13:   <%= link_to 'Create New User', users_new_path %>
+    14:     <%= yield %>
+    15:   </body>
+    16: </html>
+  
+app/views/layouts/application.html.erb:13
+Started GET "/" for ::1 at 2020-05-20 12:48:40 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 26.6ms | Allocations: 2998)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 304ms (ActiveRecord: 6.6ms | Allocations: 131021)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `users_new_path' for #<#<Class:0x00007fd84351f310>:0x00007fd84351d8f8>
+Did you mean?  users_path):
+    10:   </head>
+    11: 
+    12:   <body>
+    13:   <%= link_to 'Create New User', users_new_path %>
+    14:     <%= yield %>
+    15:   </body>
+    16: </html>
+  
+app/views/layouts/application.html.erb:13
+Started GET "/" for ::1 at 2020-05-20 12:48:56 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (13.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 3373)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 212ms (ActiveRecord: 0.6ms | Allocations: 135079)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `users_new_path' for #<#<Class:0x00007fb777937ca0>:0x00007fb777936378>
+Did you mean?  users_path):
+    10:   </head>
+    11: 
+    12:   <body>
+    13:   <%= link_to 'Create New User', users_new_path %>
+    14:     <%= yield %>
+    15:   </body>
+    16: </html>
+  
+app/views/layouts/application.html.erb:13
+Started GET "/" for ::1 at 2020-05-20 12:49:18 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 757)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 0.1ms | Allocations: 5572)
+
+
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from block in execute at /Users/marioskanellopoulos/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/rake-13.0.1/lib/rake/task.rb:281)
+Started GET "/" for ::1 at 2020-05-20 12:50:29 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 743)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.1ms | Allocations: 5541)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:50:31 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 5.1ms | Allocations: 367)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.0ms | Allocations: 4363)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:51:51 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1004)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 2167)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 0, expected 1..2)):
+    1: <h1>Create a New User</h1>
+    2: 
+    3: <ul>
+    4: <%= form_for  do |f| %>
+    5:   <li>
+    6:     <%= f.text_field :name %>
+    7:   </li>
+  
+app/views/users/new.html.erb:4
+Started GET "/users/new" for ::1 at 2020-05-20 12:51:59 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 11.0ms | Allocations: 2303)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 30.6ms | ActiveRecord: 0.0ms | Allocations: 6973)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:52:12 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 351)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.0ms | Allocations: 5113)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:52:43 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 27.0ms | Allocations: 5131)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 35.3ms | ActiveRecord: 0.0ms | Allocations: 9793)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:52:57 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 558)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 5327)
+
+
+Started POST "/users" for ::1 at 2020-05-20 12:53:04 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"28Jd6RZi6eHjMX6ES+5mlY4gingcvzELdMZyMAKepJdek7jAilXnZS50V8VwPdVeCHon3Keqb7tTCjgBACheJg==", "user"=>{"name"=>"Kubilay"}, "commit"=>"Create"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-20 09:53:04.549710"], ["updated_at", "2020-05-20 09:53:04.549710"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 113ms (ActiveRecord: 1.7ms | Allocations: 85255)
+
+
+  
+NameError (undefined local variable or method `user_new_path' for #<UsersController:0x00007fb775b54cd8>
+Did you mean?  user_path
+               users_path):
+  
+app/controllers/users_controller.rb:9:in `create'
+Started POST "/users" for ::1 at 2020-05-20 12:53:26 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"28Jd6RZi6eHjMX6ES+5mlY4gingcvzELdMZyMAKepJdek7jAilXnZS50V8VwPdVeCHon3Keqb7tTCjgBACheJg==", "user"=>{"name"=>"Kubilay"}, "commit"=>"Create"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-20 09:53:26.966049"], ["updated_at", "2020-05-20 09:53:26.966049"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 10ms (ActiveRecord: 1.8ms | Allocations: 5290)
+
+
+Started GET "/" for ::1 at 2020-05-20 12:53:26 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 787)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.3ms | Allocations: 4940)
+
+
+Started GET "/users/new" for ::1 at 2020-05-20 12:53:40 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 435)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.0ms | Allocations: 4280)
+
+
+Started POST "/users" for ::1 at 2020-05-20 12:53:43 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"dJtYtvexyor9doAgFBWK6tnHKNOiNnkFsBqrHjLjPikIySV5ACra33/l1l5STRk8C8ChsRhHGQWYPvKZmk348Q==", "user"=>{"name"=>"marios"}, "commit"=>"Create"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "marios"], ["created_at", "2020-05-20 09:53:43.958266"], ["updated_at", "2020-05-20 09:53:43.958266"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms | Allocations: 2576)
+
+
+Started GET "/" for ::1 at 2020-05-20 12:53:43 +0300
+Processing by UsersController#show as HTML
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 643)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 4499)
+
+
