@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     @event = User.find(@current_user_id).events.build(event_params)
 
     if @event.save
-      redirect_to events_show_path(@event.id)
+      redirect_to event_path(@event.id)
     else
       rendes :new
     end
@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @user = @event.user
   end
 
   private

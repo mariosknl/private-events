@@ -5,6 +5,7 @@
   <% @events.each do |event| %>
     <li>
       <%= event.description %>
+      <%= link_to 'More Details', event_path(event.id) %>
     </li>
   <% end %>
 </ol>
