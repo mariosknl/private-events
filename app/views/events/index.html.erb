@@ -3,6 +3,7 @@
 <ol>
 <% @events.each do |event| %>
   <li>
+    <strong><%= event.user.name  %> </strong> |
     <%= event.description %> |
     <%= event.date %> |
     <%= event.location %> |
