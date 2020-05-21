@@ -3,25 +3,29 @@
 <h2>Upcoming Events</h2>
 <ol>
 <% @upcoming_events.each do |event| %>
-  <li>
-    <strong><%= event.description %></strong>  |
-    <%= event.creator.name %> |
-    <%= event.date %> |
-    <%= event.location %> |
-    <%= link_to 'Show', event_path(event.id) %>
-  </li>
+  <% if @current_user == nil || @current_user.invited?(event.id) %>
+    <li>
+      <strong><%= event.description %></strong>  |
+      <%= event.creator.name %> |
+      <%= event.date %> |
+      <%= event.location %> |
+      <%= link_to 'Show', event_path(event.id) %>
+    </li>
+    <% end %>
 <% end %>
 </ol>
 
 <h2>Previous Events</h2>
 <ol>
 <% @prev_events.each do |event| %>
-  <li>
-    <strong><%= event.description %></strong>  |
-    <%= event.creator.name %> |
-    <%= event.date %> |
-    <%= event.location %> |
-    <%= link_to 'Show', event_path(event.id) %>
-  </li>
+  <% if @current_user == nil || @current_user.invited?(event.id) %>
+    <li>
+      <strong><%= event.description %></strong>  |
+      <%= event.creator.name %> |
+      <%= event.date %> |
+      <%= event.location %> |
+      <%= link_to 'Show', event_path(event.id) %>
+    </li>
+  <% end %>
 <% end %>
 </ol>
