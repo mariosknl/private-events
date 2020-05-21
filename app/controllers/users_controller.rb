@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :current_user
-
   def new
     @user = User.new
   end
@@ -30,10 +28,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name)
-  end
-
-  def current_user
-    @current_user_id = session[:current_user_id]
-    @current_user = User.find(@current_user_id) if @current_user_id
   end
 end

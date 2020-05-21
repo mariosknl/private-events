@@ -4,4 +4,8 @@ class User < ApplicationRecord
   has_many :attended_events, through: :invitations
   scope :upcoming_events, -> { where('date > ?', Time.now) }
   scope :prev_events, -> { where('date < ?', Time.now) }
+
+  def invited?(event_id)
+    attended_events.exists?(event_id)
+  end
 end

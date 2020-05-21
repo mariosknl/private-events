@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-  before_action :current_user
-
   def index
     @events = Event.all.order('created_at DESC')
     @upcoming_events = Event.upcoming_events
@@ -27,10 +25,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-  def current_user
-    @current_user_id = session[:current_user_id]
-  end
 
   def event_params
     params.require(:event).permit(:description, :date, :location)
