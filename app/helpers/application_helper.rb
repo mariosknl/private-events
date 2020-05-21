@@ -10,4 +10,12 @@ module ApplicationHelper
   def sign_out_links
     link_to 'Sign Out', sessions_destroy_path unless session[:current_user_id].nil?
   end
+
+  def create_event_link
+    link_to '| Create New Event', new_event_path unless session[:current_user_id].nil?
+  end
+
+  def events_calendar_link
+    link_to '| Events Calendar', events_path unless session[:current_user_id].nil?
+  end
 end

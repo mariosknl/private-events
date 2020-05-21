@@ -4,8 +4,8 @@
 <%= form_for @event do |f| %>
   <%= f.label :description %>
   <%= f.text_field :description %>
-  <%= f.text_field :date, placeholder: "2020-08-06" %>
-  <%= f.text_field :location, placeholder: "Greece/Patras" %>
+  <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+  <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
   <%= f.submit :Create %>
 <% end %>
 </ul>

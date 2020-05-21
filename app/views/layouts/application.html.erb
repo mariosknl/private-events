@@ -10,13 +10,14 @@
   </head>
 
   <body>
+
   <h1>Welcome <%= welcome_links %> </h1>
   <%= link_to 'Main Page', root_path %> |
-  <%= link_to 'Create New User', new_user_path %> |
-  <%= link_to 'Create New Event', new_event_path %> |
-  <br>  <br> 
+  <%= link_to 'Create New User', new_user_path %>
+  <%= create_event_link %> |
+  <br>  <br>
   <%= link_to 'Switch Between Users', users_path %> |
-  <%= link_to 'Events Calendar', events_path %> |
+  <%= events_calendar_link %> 
   <br>  <br>
   <%= my_page_links %>
   <%= sign_out_links %>
