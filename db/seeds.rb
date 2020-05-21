@@ -5,16 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+user_names = ["Marios","Kubilay","Luke", "Jimi", "Adrian", "Starbucks", "Coffee",
+  "Arbat", "Arbat", "Patras", "Ankara", "Athens", "Skywalker", "Starwars",
+  "Frodo", "Gandalf", "The Ring", "Smeagol"]
 
-["Marios","Kubilay","Luke", "Jimi", "Adrian", "Starbucks", "Coffee", "Arbat"].each do |name|
+user_names.each do |name|
   User.create(name: name)
 end
 
-events = ["Metallica Concert","Classical Music Concert","Jazz Sessions","DJ Set","Ballet Show","Circus"]
+events = ["Metallica Concert","Classical Music Concert",
+  "Jazz Sessions","DJ Set","Ballet Show","Circus", "Cinema",
+  "Going to Mordor", "Friends Meeting", "Beer Contest", "Hackaton", "Going to Mars"]
 
 date = ["2020-02-06","2021-02-02"]
 
-3.times do |index| 
+6.times do |index|
   User.first.events.create(description: events[index], location: "Greece/Patras", date: date.sample)
-  User.find(2).events.create(description: events[5-index], location: "Turkey/Ankara", date: date.sample)
+  User.find(2).events.create(description: events[11-index], location: "Turkey/Ankara", date: date.sample)
+end
+
+User.all.ids.each do |user_id|
+  Event.all.ids.each do |event_id|
+    if user_id != Event.find(event_id).creator.id
+      Invitation.create(attendee_id: user_id, attended_event_id: event_id)
+    end
+  end
 end
