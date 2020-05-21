@@ -1,2 +1,13 @@
 module ApplicationHelper
+  def welcome_links
+    @username = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
+  end
+
+  def my_page_links
+    link_to "My Events (#{@current_user.name})", user_path(@current_user_id) unless session[:current_user_id].nil?
+  end
+
+  def sign_out_links
+    link_to 'Sign Out', sessions_destroy_path unless session[:current_user_id].nil?
+  end
 end
