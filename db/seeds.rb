@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 user_names = ["Marios","Kubilay","Luke", "Jimi", "Adrian", "Starbucks", "Coffee",
-  "Arbat", "Arbat", "Patras", "Ankara", "Athens", "Skywalker", "Starwars",
-  "Frodo", "Gandalf", "The Ring", "Smeagol"]
+  "Arbat", "Arbat", "Patras"]
 
 user_names.each do |name|
   User.create(name: name)
@@ -26,8 +25,13 @@ end
 
 User.all.ids.each do |user_id|
   Event.all.ids.each do |event_id|
-    if user_id != Event.find(event_id).creator.id
-      Invitation.create(attendee_id: user_id, attended_event_id: event_id)
-    end
+    Invitation.create(attendee_id: user_id, attended_event_id: event_id)
   end
+end
+
+user_names = ["Ankara", "Athens", "Skywalker", "Starwars", "Frodo",
+  "Gandalf", "The Ring", "Smeagol"]
+
+user_names.each do |name|
+  User.create(name: name)
 end

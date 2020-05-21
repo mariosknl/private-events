@@ -18,7 +18,7 @@
   <% @event.unattendees.each do |unattendee| %>
     <li>
       <%= unattendee.name %>
-      <% link_to 'Invite', invitations_create_path(unattendee.id, @event.id) %>
+      <%= link_to 'Invite', invitations_create_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}) %>
     </li>
   <% end %>
 </ol>

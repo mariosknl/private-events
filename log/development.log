@@ -18248,3 +18248,1103 @@ Processing by EventsController#show as HTML
 Completed 200 OK in 43ms (Views: 38.2ms | ActiveRecord: 1.0ms | Allocations: 11941)
 
 
+Started GET "/users/3" for ::1 at 2020-05-21 16:06:38 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:06:38.709736')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:06:38.710140')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 33.6ms | Allocations: 7000)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 211ms (Views: 148.3ms | ActiveRecord: 7.0ms | Allocations: 44627)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:06:42 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 2462)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 34ms (Views: 25.0ms | ActiveRecord: 1.1ms | Allocations: 7534)
+
+
+Started GET "/sessions/destroy" for ::1 at 2020-05-21 16:06:44 +0300
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 860)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:06:44 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 14.5ms | Allocations: 2263)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.5ms | ActiveRecord: 0.4ms | Allocations: 6099)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:06:47 +0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:06:47.681935')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:06:47.682819')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 61.7ms | Allocations: 13028)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 66.4ms | ActiveRecord: 2.8ms | Allocations: 17522)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:06:51 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 10.9ms | Allocations: 2267)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 44.7ms | ActiveRecord: 0.7ms | Allocations: 6085)
+
+
+Started GET "/sessions/new.1" for ::1 at 2020-05-21 16:06:52 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 310)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:06:52 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 10.2ms | Allocations: 2263)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 32ms (Views: 25.2ms | ActiveRecord: 1.5ms | Allocations: 7181)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:06:53 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:06:53.922199')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 13], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:06:53.922409')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 88.6ms | Allocations: 17792)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 106ms (Views: 90.2ms | ActiveRecord: 9.9ms | Allocations: 22823)
+
+
+Started GET "/sessions/destroy" for ::1 at 2020-05-21 16:06:58 +0300
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 820)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:06:58 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 12.0ms | Allocations: 2261)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 24.0ms | ActiveRecord: 0.4ms | Allocations: 6083)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:07:00 +0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:07:00.768310')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:07:00.768457')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 73.9ms | Allocations: 11737)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 90ms (Views: 84.7ms | ActiveRecord: 3.0ms | Allocations: 15684)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:07:02 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 13.4ms | Allocations: 3942)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 70ms (Views: 55.1ms | ActiveRecord: 1.5ms | Allocations: 9136)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:07:57 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 2984)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 26.3ms | ActiveRecord: 1.4ms | Allocations: 9040)
+
+
+Started GET "/invitations/create.1" for ::1 at 2020-05-21 16:08:13 +0300
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/invitations_controller.rb:11:in `<main>'
+Started PUT "/__web_console/repl_sessions/cacdf64d9caf6c0e8efa15526b88084b" for ::1 at 2020-05-21 16:08:18 +0300
+Started PUT "/__web_console/repl_sessions/cacdf64d9caf6c0e8efa15526b88084b" for ::1 at 2020-05-21 16:08:19 +0300
+Started PUT "/__web_console/repl_sessions/cacdf64d9caf6c0e8efa15526b88084b" for ::1 at 2020-05-21 16:08:25 +0300
+Started GET "/events/14" for ::1 at 2020-05-21 16:11:30 +0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 34.8ms | Allocations: 5400)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 96ms (Views: 47.0ms | ActiveRecord: 8.3ms | Allocations: 20560)
+
+
+Started GET "/invitations/create.1" for ::1 at 2020-05-21 16:11:31 +0300
+  
+NoMethodError (undefined method `save' for nil:NilClass):
+  
+app/controllers/invitations_controller.rb:11:in `<main>'
+Started GET "/events/14" for ::1 at 2020-05-21 16:11:46 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 19.8ms | Allocations: 5398)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 75ms (Views: 31.7ms | ActiveRecord: 6.0ms | Allocations: 20641)
+
+
+Started GET "/invitations/create.1" for ::1 at 2020-05-21 16:11:47 +0300
+Processing by InvitationsController#create as 
+  Rendering invitations/create.html.erb within layouts/application
+  Rendered invitations/create.html.erb within layouts/application (Duration: 1.6ms | Allocations: 78)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.0ms | ActiveRecord: 0.0ms | Allocations: 4560)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:12:14 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 11.9ms | Allocations: 5395)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 69ms (Views: 28.4ms | ActiveRecord: 4.4ms | Allocations: 20583)
+
+
+Started GET "/invitations/create.2" for ::1 at 2020-05-21 16:12:15 +0300
+Processing by InvitationsController#create as 
+  Rendering invitations/create.html.erb within layouts/application
+  Rendered invitations/create.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 19.3ms | ActiveRecord: 0.0ms | Allocations: 4060)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:14:18 +0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 30.1ms | Allocations: 5280)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 81ms (Views: 49.3ms | ActiveRecord: 6.2ms | Allocations: 16741)
+
+
+Started GET "/sessions/new.1" for ::1 at 2020-05-21 16:14:24 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms | Allocations: 329)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:14:24 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 7.4ms | Allocations: 2264)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 44ms (Views: 25.1ms | ActiveRecord: 0.7ms | Allocations: 7574)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:14:27 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (2.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:14:27.901759')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 13], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:14:27.902542')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 1], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 106.5ms | Allocations: 28235)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 142ms (Views: 112.8ms | ActiveRecord: 10.8ms | Allocations: 35560)
+
+
+Started GET "/events/10" for ::1 at 2020-05-21 16:14:29 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 10]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 17.5ms | Allocations: 3499)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 53ms (Views: 34.7ms | ActiveRecord: 2.6ms | Allocations: 9786)
+
+
+Started GET "/sessions/destroy" for ::1 at 2020-05-21 16:14:32 +0300
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 833)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:14:32 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2267)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 1.0ms | Allocations: 6107)
+
+
+Started GET "/sessions/new.20" for ::1 at 2020-05-21 16:14:34 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 297)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:14:34 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2261)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 47ms (Views: 39.9ms | ActiveRecord: 1.0ms | Allocations: 7141)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:14:37 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:14:37.354855')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 13], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 14], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:14:37.355066')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mEvent Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 20], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  Rendered events/index.html.erb within layouts/application (Duration: 64.4ms | Allocations: 13325)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 80ms (Views: 65.1ms | ActiveRecord: 9.3ms | Allocations: 18361)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:14:38 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 11.6ms | Allocations: 3293)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 41ms (Views: 31.6ms | ActiveRecord: 1.4ms | Allocations: 9391)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=1" for ::1 at 2020-05-21 16:14:43 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"1"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering invitations/create.html.erb within layouts/application
+  Rendered invitations/create.html.erb within layouts/application (Duration: 0.6ms | Allocations: 81)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 34ms (Views: 26.1ms | ActiveRecord: 0.4ms | Allocations: 5578)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT "invitations".* FROM "invitations" WHERE "invitations"."attendee_id" = ? LIMIT ?[0m  [["attendee_id", 1], ["LIMIT", 11]]
+Started GET "/users/20" for ::1 at 2020-05-21 16:18:45 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 20]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:18:45.849589')[0m  [["attendee_id", 20]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:18:45.850201')[0m  [["attendee_id", 20]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 19.6ms | Allocations: 2630)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 44ms (Views: 32.4ms | ActiveRecord: 2.7ms | Allocations: 8682)
+
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 14], ["created_at", "2020-05-21 13:20:02.452415"], ["updated_at", "2020-05-21 13:20:02.452415"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 14], ["created_at", "2020-05-21 13:21:52.120707"], ["updated_at", "2020-05-21 13:21:52.120707"]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/events/14" for ::1 at 2020-05-21 16:24:13 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 13.7ms | Allocations: 3246)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 45ms (Views: 26.7ms | ActiveRecord: 2.7ms | Allocations: 9356)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:28:22 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 21.9ms | Allocations: 5936)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 83ms (Views: 39.0ms | ActiveRecord: 6.4ms | Allocations: 22132)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=3" for ::1 at 2020-05-21 16:28:25 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"3"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 3.0ms | Allocations: 4891)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'attanded_event_id' for Invitation.):
+  
+app/controllers/invitations_controller.rb:10:in `create'
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=3" for ::1 at 2020-05-21 16:29:18 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"3"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 2.8ms | Allocations: 10260)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'attanded_event_id' for Invitation.):
+  
+app/controllers/invitations_controller.rb:10:in `create'
+Started GET "/" for ::1 at 2020-05-21 16:29:24 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2285)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 20ms (Views: 16.2ms | ActiveRecord: 0.8ms | Allocations: 7377)
+
+
+Started GET "/users/20" for ::1 at 2020-05-21 16:29:30 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 20]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:29:30.619390')[0m  [["attendee_id", 20]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:29:30.619937')[0m  [["attendee_id", 20]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 28.5ms | Allocations: 5551)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 76ms (Views: 49.1ms | ActiveRecord: 6.4ms | Allocations: 14394)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:29:31 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 25.1ms | Allocations: 4121)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 68ms (Views: 52.2ms | ActiveRecord: 2.6ms | Allocations: 11009)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=3" for ::1 at 2020-05-21 16:29:33 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"3"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 1.5ms | Allocations: 1766)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'attanded_event_id' for Invitation.):
+  
+app/controllers/invitations_controller.rb:10:in `create'
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=3" for ::1 at 2020-05-21 16:30:15 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"3"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:15.750253"], ["updated_at", "2020-05-21 13:30:15.750253"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 80ms (ActiveRecord: 9.8ms | Allocations: 22302)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:16 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 21.9ms | Allocations: 4024)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 66ms (Views: 41.7ms | ActiveRecord: 4.2ms | Allocations: 10914)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=2" for ::1 at 2020-05-21 16:30:22 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"2"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:22.844178"], ["updated_at", "2020-05-21 13:30:22.844178"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 53ms (ActiveRecord: 7.5ms | Allocations: 7151)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:22 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 21.7ms | Allocations: 3114)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 53ms (Views: 38.4ms | ActiveRecord: 1.5ms | Allocations: 9234)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=10" for ::1 at 2020-05-21 16:30:24 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"10"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:24.984265"], ["updated_at", "2020-05-21 13:30:24.984265"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (7.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 102ms (ActiveRecord: 10.5ms | Allocations: 7149)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:25 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 56.0ms | Allocations: 3196)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 104ms (Views: 71.0ms | ActiveRecord: 4.2ms | Allocations: 9312)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=9" for ::1 at 2020-05-21 16:30:26 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"9"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:26.092127"], ["updated_at", "2020-05-21 13:30:26.092127"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 42ms (ActiveRecord: 9.9ms | Allocations: 7157)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:26 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 24.6ms | Allocations: 2984)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 53ms (Views: 36.5ms | ActiveRecord: 3.8ms | Allocations: 9088)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=12" for ::1 at 2020-05-21 16:30:27 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"12"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 12], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:27.291799"], ["updated_at", "2020-05-21 13:30:27.291799"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 25ms (ActiveRecord: 6.0ms | Allocations: 7145)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:27 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 6.5ms | Allocations: 2919)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 29ms (Views: 16.3ms | ActiveRecord: 2.0ms | Allocations: 9052)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=19" for ::1 at 2020-05-21 16:30:30 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"19"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (4.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 19], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:30.112117"], ["updated_at", "2020-05-21 13:30:30.112117"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 53ms (ActiveRecord: 12.1ms | Allocations: 7143)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:30 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 5.9ms | Allocations: 2854)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 31ms (Views: 23.8ms | ActiveRecord: 1.2ms | Allocations: 8965)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=13" for ::1 at 2020-05-21 16:30:32 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"13"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 13], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:32.563134"], ["updated_at", "2020-05-21 13:30:32.563134"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 38ms (ActiveRecord: 9.0ms | Allocations: 7161)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:32 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 4.8ms | Allocations: 2789)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 28ms (Views: 11.1ms | ActiveRecord: 2.2ms | Allocations: 8908)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=14&information%5Bunattendee_id%5D=8" for ::1 at 2020-05-21 16:30:33 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"14", "unattendee_id"=>"8"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (1.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 14], ["created_at", "2020-05-21 13:30:33.395175"], ["updated_at", "2020-05-21 13:30:33.395175"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/14
+Completed 302 Found in 43ms (ActiveRecord: 9.3ms | Allocations: 7149)
+
+
+Started GET "/events/14" for ::1 at 2020-05-21 16:30:33 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 14]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 6.5ms | Allocations: 2724)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 27ms (Views: 21.9ms | ActiveRecord: 0.9ms | Allocations: 8838)
+
+
