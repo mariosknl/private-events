@@ -19348,3 +19348,1588 @@ Processing by EventsController#show as HTML
 Completed 200 OK in 27ms (Views: 21.9ms | ActiveRecord: 0.9ms | Allocations: 8838)
 
 
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200520091142)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520091142"]]
+  [1m[35m (8.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateEvents (20200520105144)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date" datetime, "location" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520105144"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCreatorIdToEvents (20200520125708)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "events" ADD "creator_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aevents" ("id" integer NOT NULL PRIMARY KEY, "date" datetime DEFAULT NULL, "location" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "creator_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "aevents" ("id","date","location","created_at","updated_at","creator_id")
+                     SELECT "id","date","location","created_at","updated_at","creator_id" FROM "events"[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE "events"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "events" ("id" integer NOT NULL PRIMARY KEY, "date" datetime DEFAULT NULL, "location" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "creator_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_15c34a9137"
+FOREIGN KEY ("creator_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "events" ("id","date","location","created_at","updated_at","creator_id")
+                     SELECT "id","date","location","created_at","updated_at","creator_id" FROM "aevents"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE "aevents"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520125708"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDesriptionToEvents (20200520131215)
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "events" ADD "description" varchar[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520131215"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateInvitations (20200520142637)
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "attendee_id" integer, "attended_event_id" integer, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520142637"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddForeignKeysToEvents (20200520143027)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ainvitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ainvitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "invitations"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "invitations"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d2d96210b9"
+FOREIGN KEY ("attendee_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "ainvitations"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "ainvitations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ainvitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ainvitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "invitations"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "invitations"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d2d96210b9"
+FOREIGN KEY ("attendee_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_8842c17459"
+FOREIGN KEY ("attended_event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "ainvitations"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "ainvitations"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520143027"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-05-21 13:43:16.102279"], ["updated_at", "2020-05-21 13:43:16.102279"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200520091142)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520091142"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateEvents (20200520105144)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date" datetime, "location" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520105144"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCreatorIdToEvents (20200520125708)
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "events" ADD "creator_id" integer[0m
+  [1m[35m (1.6ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aevents" ("id" integer NOT NULL PRIMARY KEY, "date" datetime DEFAULT NULL, "location" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "creator_id" integer DEFAULT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "aevents" ("id","date","location","created_at","updated_at","creator_id")
+                     SELECT "id","date","location","created_at","updated_at","creator_id" FROM "events"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "events"[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "events" ("id" integer NOT NULL PRIMARY KEY, "date" datetime DEFAULT NULL, "location" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "creator_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_15c34a9137"
+FOREIGN KEY ("creator_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "events" ("id","date","location","created_at","updated_at","creator_id")
+                     SELECT "id","date","location","created_at","updated_at","creator_id" FROM "aevents"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE "aevents"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520125708"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDesriptionToEvents (20200520131215)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "events" ADD "description" varchar[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520131215"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateInvitations (20200520142637)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "attendee_id" integer, "attended_event_id" integer, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520142637"]]
+  [1m[35m (7.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddForeignKeysToEvents (20200520143027)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ainvitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "ainvitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "invitations"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "invitations"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d2d96210b9"
+FOREIGN KEY ("attendee_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "ainvitations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "ainvitations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ainvitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "ainvitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "invitations"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "invitations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" integer NOT NULL PRIMARY KEY, "attendee_id" integer DEFAULT NULL, "attended_event_id" integer DEFAULT NULL, "accepted" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d2d96210b9"
+FOREIGN KEY ("attendee_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_8842c17459"
+FOREIGN KEY ("attended_event_id")
+  REFERENCES "events" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("id","attendee_id","attended_event_id","accepted","created_at","updated_at")
+                     SELECT "id","attendee_id","attended_event_id","accepted","created_at","updated_at" FROM "ainvitations"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "ainvitations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200520143027"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-05-21 13:43:52.330355"], ["updated_at", "2020-05-21 13:43:52.330355"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Marios"], ["created_at", "2020-05-21 13:43:57.045481"], ["updated_at", "2020-05-21 13:43:57.045481"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-21 13:43:57.079192"], ["updated_at", "2020-05-21 13:43:57.079192"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Luke"], ["created_at", "2020-05-21 13:43:57.104247"], ["updated_at", "2020-05-21 13:43:57.104247"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jimi"], ["created_at", "2020-05-21 13:43:57.124504"], ["updated_at", "2020-05-21 13:43:57.124504"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Adrian"], ["created_at", "2020-05-21 13:43:57.142392"], ["updated_at", "2020-05-21 13:43:57.142392"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Starbucks"], ["created_at", "2020-05-21 13:43:57.161618"], ["updated_at", "2020-05-21 13:43:57.161618"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Coffee"], ["created_at", "2020-05-21 13:43:57.184150"], ["updated_at", "2020-05-21 13:43:57.184150"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Arbat"], ["created_at", "2020-05-21 13:43:57.205657"], ["updated_at", "2020-05-21 13:43:57.205657"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Arbat"], ["created_at", "2020-05-21 13:43:57.226299"], ["updated_at", "2020-05-21 13:43:57.226299"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Patras"], ["created_at", "2020-05-21 13:43:57.247159"], ["updated_at", "2020-05-21 13:43:57.247159"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.333095"], ["updated_at", "2020-05-21 13:43:57.333095"], ["creator_id", 1], ["description", "Metallica Concert"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.9ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2021-02-02 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.364963"], ["updated_at", "2020-05-21 13:43:57.364963"], ["creator_id", 2], ["description", "Going to Mars"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.400394"], ["updated_at", "2020-05-21 13:43:57.400394"], ["creator_id", 1], ["description", "Classical Music Concert"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.5ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2021-02-02 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.449867"], ["updated_at", "2020-05-21 13:43:57.449867"], ["creator_id", 2], ["description", "Hackaton"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (1.0ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.485161"], ["updated_at", "2020-05-21 13:43:57.485161"], ["creator_id", 1], ["description", "Jazz Sessions"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.7ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.514890"], ["updated_at", "2020-05-21 13:43:57.514890"], ["creator_id", 2], ["description", "Beer Contest"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (1.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2021-02-02 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.543746"], ["updated_at", "2020-05-21 13:43:57.543746"], ["creator_id", 1], ["description", "DJ Set"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.9ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2021-02-02 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.572858"], ["updated_at", "2020-05-21 13:43:57.572858"], ["creator_id", 2], ["description", "Friends Meeting"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (1.3ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.611847"], ["updated_at", "2020-05-21 13:43:57.611847"], ["creator_id", 1], ["description", "Ballet Show"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (1.0ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.651228"], ["updated_at", "2020-05-21 13:43:57.651228"], ["creator_id", 2], ["description", "Going to Mordor"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-02-06 00:00:00"], ["location", "Greece/Patras"], ["created_at", "2020-05-21 13:43:57.679482"], ["updated_at", "2020-05-21 13:43:57.679482"], ["creator_id", 1], ["description", "Circus"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Create (0.7ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2021-02-02 00:00:00"], ["location", "Turkey/Ankara"], ["created_at", "2020-05-21 13:43:57.710179"], ["updated_at", "2020-05-21 13:43:57.710179"], ["creator_id", 2], ["description", "Cinema"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "users"."id" FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:57.777338"], ["updated_at", "2020-05-21 13:43:57.777338"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:57.798795"], ["updated_at", "2020-05-21 13:43:57.798795"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:57.831772"], ["updated_at", "2020-05-21 13:43:57.831772"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:57.857398"], ["updated_at", "2020-05-21 13:43:57.857398"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:57.892952"], ["updated_at", "2020-05-21 13:43:57.892952"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:57.922990"], ["updated_at", "2020-05-21 13:43:57.922990"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:57.952045"], ["updated_at", "2020-05-21 13:43:57.952045"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:57.977583"], ["updated_at", "2020-05-21 13:43:57.977583"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 9], ["created_at", "2020-05-21 13:43:58.014778"], ["updated_at", "2020-05-21 13:43:58.014778"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 10], ["created_at", "2020-05-21 13:43:58.046599"], ["updated_at", "2020-05-21 13:43:58.046599"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 11], ["created_at", "2020-05-21 13:43:58.095402"], ["updated_at", "2020-05-21 13:43:58.095402"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 1], ["attended_event_id", 12], ["created_at", "2020-05-21 13:43:58.129512"], ["updated_at", "2020-05-21 13:43:58.129512"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:58.168306"], ["updated_at", "2020-05-21 13:43:58.168306"]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:58.205452"], ["updated_at", "2020-05-21 13:43:58.205452"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:58.242781"], ["updated_at", "2020-05-21 13:43:58.242781"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:58.276135"], ["updated_at", "2020-05-21 13:43:58.276135"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:58.300250"], ["updated_at", "2020-05-21 13:43:58.300250"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:58.331709"], ["updated_at", "2020-05-21 13:43:58.331709"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:58.366271"], ["updated_at", "2020-05-21 13:43:58.366271"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:58.388839"], ["updated_at", "2020-05-21 13:43:58.388839"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 9], ["created_at", "2020-05-21 13:43:58.430557"], ["updated_at", "2020-05-21 13:43:58.430557"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 10], ["created_at", "2020-05-21 13:43:58.460646"], ["updated_at", "2020-05-21 13:43:58.460646"]]
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 11], ["created_at", "2020-05-21 13:43:58.488045"], ["updated_at", "2020-05-21 13:43:58.488045"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (2.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 2], ["attended_event_id", 12], ["created_at", "2020-05-21 13:43:58.523908"], ["updated_at", "2020-05-21 13:43:58.523908"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:58.562478"], ["updated_at", "2020-05-21 13:43:58.562478"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:58.588225"], ["updated_at", "2020-05-21 13:43:58.588225"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:58.615420"], ["updated_at", "2020-05-21 13:43:58.615420"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:58.646986"], ["updated_at", "2020-05-21 13:43:58.646986"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:58.686851"], ["updated_at", "2020-05-21 13:43:58.686851"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:58.720523"], ["updated_at", "2020-05-21 13:43:58.720523"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:58.760679"], ["updated_at", "2020-05-21 13:43:58.760679"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:58.792386"], ["updated_at", "2020-05-21 13:43:58.792386"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 9], ["created_at", "2020-05-21 13:43:58.828091"], ["updated_at", "2020-05-21 13:43:58.828091"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 10], ["created_at", "2020-05-21 13:43:58.855866"], ["updated_at", "2020-05-21 13:43:58.855866"]]
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 11], ["created_at", "2020-05-21 13:43:58.895546"], ["updated_at", "2020-05-21 13:43:58.895546"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 12], ["created_at", "2020-05-21 13:43:58.931257"], ["updated_at", "2020-05-21 13:43:58.931257"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:58.971122"], ["updated_at", "2020-05-21 13:43:58.971122"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:58.999638"], ["updated_at", "2020-05-21 13:43:58.999638"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:59.029755"], ["updated_at", "2020-05-21 13:43:59.029755"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:59.071547"], ["updated_at", "2020-05-21 13:43:59.071547"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:59.117046"], ["updated_at", "2020-05-21 13:43:59.117046"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:59.149401"], ["updated_at", "2020-05-21 13:43:59.149401"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:59.183566"], ["updated_at", "2020-05-21 13:43:59.183566"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:59.215636"], ["updated_at", "2020-05-21 13:43:59.215636"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 9], ["created_at", "2020-05-21 13:43:59.246106"], ["updated_at", "2020-05-21 13:43:59.246106"]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 10], ["created_at", "2020-05-21 13:43:59.272544"], ["updated_at", "2020-05-21 13:43:59.272544"]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 11], ["created_at", "2020-05-21 13:43:59.311736"], ["updated_at", "2020-05-21 13:43:59.311736"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 4], ["attended_event_id", 12], ["created_at", "2020-05-21 13:43:59.337242"], ["updated_at", "2020-05-21 13:43:59.337242"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:59.367891"], ["updated_at", "2020-05-21 13:43:59.367891"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:59.396788"], ["updated_at", "2020-05-21 13:43:59.396788"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (3.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:59.436967"], ["updated_at", "2020-05-21 13:43:59.436967"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:59.477430"], ["updated_at", "2020-05-21 13:43:59.477430"]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:59.517796"], ["updated_at", "2020-05-21 13:43:59.517796"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:59.545316"], ["updated_at", "2020-05-21 13:43:59.545316"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:59.578917"], ["updated_at", "2020-05-21 13:43:59.578917"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:59.609085"], ["updated_at", "2020-05-21 13:43:59.609085"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 9], ["created_at", "2020-05-21 13:43:59.636193"], ["updated_at", "2020-05-21 13:43:59.636193"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 10], ["created_at", "2020-05-21 13:43:59.666724"], ["updated_at", "2020-05-21 13:43:59.666724"]]
+  [1m[35m (7.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 11], ["created_at", "2020-05-21 13:43:59.698318"], ["updated_at", "2020-05-21 13:43:59.698318"]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 12], ["created_at", "2020-05-21 13:43:59.730399"], ["updated_at", "2020-05-21 13:43:59.730399"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 1], ["created_at", "2020-05-21 13:43:59.763339"], ["updated_at", "2020-05-21 13:43:59.763339"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 2], ["created_at", "2020-05-21 13:43:59.794923"], ["updated_at", "2020-05-21 13:43:59.794923"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 3], ["created_at", "2020-05-21 13:43:59.816894"], ["updated_at", "2020-05-21 13:43:59.816894"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 4], ["created_at", "2020-05-21 13:43:59.853036"], ["updated_at", "2020-05-21 13:43:59.853036"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 5], ["created_at", "2020-05-21 13:43:59.888230"], ["updated_at", "2020-05-21 13:43:59.888230"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 6], ["created_at", "2020-05-21 13:43:59.922824"], ["updated_at", "2020-05-21 13:43:59.922824"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (2.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 7], ["created_at", "2020-05-21 13:43:59.956717"], ["updated_at", "2020-05-21 13:43:59.956717"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 8], ["created_at", "2020-05-21 13:43:59.986853"], ["updated_at", "2020-05-21 13:43:59.986853"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 9], ["created_at", "2020-05-21 13:44:00.016956"], ["updated_at", "2020-05-21 13:44:00.016956"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (2.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 10], ["created_at", "2020-05-21 13:44:00.054342"], ["updated_at", "2020-05-21 13:44:00.054342"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 11], ["created_at", "2020-05-21 13:44:00.105117"], ["updated_at", "2020-05-21 13:44:00.105117"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 6], ["attended_event_id", 12], ["created_at", "2020-05-21 13:44:00.146108"], ["updated_at", "2020-05-21 13:44:00.146108"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 1], ["created_at", "2020-05-21 13:44:00.181251"], ["updated_at", "2020-05-21 13:44:00.181251"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 2], ["created_at", "2020-05-21 13:44:00.209735"], ["updated_at", "2020-05-21 13:44:00.209735"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (2.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 3], ["created_at", "2020-05-21 13:44:00.231190"], ["updated_at", "2020-05-21 13:44:00.231190"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 4], ["created_at", "2020-05-21 13:44:00.264132"], ["updated_at", "2020-05-21 13:44:00.264132"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 5], ["created_at", "2020-05-21 13:44:00.296467"], ["updated_at", "2020-05-21 13:44:00.296467"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 6], ["created_at", "2020-05-21 13:44:00.329728"], ["updated_at", "2020-05-21 13:44:00.329728"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 7], ["created_at", "2020-05-21 13:44:00.353872"], ["updated_at", "2020-05-21 13:44:00.353872"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 8], ["created_at", "2020-05-21 13:44:00.384832"], ["updated_at", "2020-05-21 13:44:00.384832"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 9], ["created_at", "2020-05-21 13:44:00.426754"], ["updated_at", "2020-05-21 13:44:00.426754"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 10], ["created_at", "2020-05-21 13:44:00.461676"], ["updated_at", "2020-05-21 13:44:00.461676"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 11], ["created_at", "2020-05-21 13:44:00.492344"], ["updated_at", "2020-05-21 13:44:00.492344"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 12], ["created_at", "2020-05-21 13:44:00.513568"], ["updated_at", "2020-05-21 13:44:00.513568"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 1], ["created_at", "2020-05-21 13:44:00.548266"], ["updated_at", "2020-05-21 13:44:00.548266"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 2], ["created_at", "2020-05-21 13:44:00.581798"], ["updated_at", "2020-05-21 13:44:00.581798"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 3], ["created_at", "2020-05-21 13:44:00.613066"], ["updated_at", "2020-05-21 13:44:00.613066"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 4], ["created_at", "2020-05-21 13:44:00.645453"], ["updated_at", "2020-05-21 13:44:00.645453"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (2.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 5], ["created_at", "2020-05-21 13:44:00.677630"], ["updated_at", "2020-05-21 13:44:00.677630"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 6], ["created_at", "2020-05-21 13:44:00.706348"], ["updated_at", "2020-05-21 13:44:00.706348"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 7], ["created_at", "2020-05-21 13:44:00.744446"], ["updated_at", "2020-05-21 13:44:00.744446"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 8], ["created_at", "2020-05-21 13:44:00.768480"], ["updated_at", "2020-05-21 13:44:00.768480"]]
+  [1m[35m (7.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 9], ["created_at", "2020-05-21 13:44:00.794932"], ["updated_at", "2020-05-21 13:44:00.794932"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.3ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 10], ["created_at", "2020-05-21 13:44:00.820448"], ["updated_at", "2020-05-21 13:44:00.820448"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 11], ["created_at", "2020-05-21 13:44:00.847206"], ["updated_at", "2020-05-21 13:44:00.847206"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 8], ["attended_event_id", 12], ["created_at", "2020-05-21 13:44:00.878966"], ["updated_at", "2020-05-21 13:44:00.878966"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 1], ["created_at", "2020-05-21 13:44:00.909427"], ["updated_at", "2020-05-21 13:44:00.909427"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 2], ["created_at", "2020-05-21 13:44:00.936991"], ["updated_at", "2020-05-21 13:44:00.936991"]]
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 3], ["created_at", "2020-05-21 13:44:00.959442"], ["updated_at", "2020-05-21 13:44:00.959442"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 4], ["created_at", "2020-05-21 13:44:00.991998"], ["updated_at", "2020-05-21 13:44:00.991998"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 5], ["created_at", "2020-05-21 13:44:01.028665"], ["updated_at", "2020-05-21 13:44:01.028665"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 6], ["created_at", "2020-05-21 13:44:01.054036"], ["updated_at", "2020-05-21 13:44:01.054036"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 7], ["created_at", "2020-05-21 13:44:01.083692"], ["updated_at", "2020-05-21 13:44:01.083692"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 8], ["created_at", "2020-05-21 13:44:01.114916"], ["updated_at", "2020-05-21 13:44:01.114916"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 9], ["created_at", "2020-05-21 13:44:01.146946"], ["updated_at", "2020-05-21 13:44:01.146946"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 10], ["created_at", "2020-05-21 13:44:01.175532"], ["updated_at", "2020-05-21 13:44:01.175532"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.4ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 11], ["created_at", "2020-05-21 13:44:01.200218"], ["updated_at", "2020-05-21 13:44:01.200218"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 12], ["created_at", "2020-05-21 13:44:01.220160"], ["updated_at", "2020-05-21 13:44:01.220160"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "events"."id" FROM "events"[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.0ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 1], ["created_at", "2020-05-21 13:44:01.257149"], ["updated_at", "2020-05-21 13:44:01.257149"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 2], ["created_at", "2020-05-21 13:44:01.295989"], ["updated_at", "2020-05-21 13:44:01.295989"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 3], ["created_at", "2020-05-21 13:44:01.327458"], ["updated_at", "2020-05-21 13:44:01.327458"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.9ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 4], ["created_at", "2020-05-21 13:44:01.357141"], ["updated_at", "2020-05-21 13:44:01.357141"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mInvitation Create (1.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 5], ["created_at", "2020-05-21 13:44:01.386026"], ["updated_at", "2020-05-21 13:44:01.386026"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 6], ["created_at", "2020-05-21 13:44:01.414732"], ["updated_at", "2020-05-21 13:44:01.414732"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.8ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 7], ["created_at", "2020-05-21 13:44:01.446693"], ["updated_at", "2020-05-21 13:44:01.446693"]]
+  [1m[35m (7.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 8], ["created_at", "2020-05-21 13:44:01.482827"], ["updated_at", "2020-05-21 13:44:01.482827"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mInvitation Create (3.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 9], ["created_at", "2020-05-21 13:44:01.518727"], ["updated_at", "2020-05-21 13:44:01.518727"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 10], ["created_at", "2020-05-21 13:44:01.558325"], ["updated_at", "2020-05-21 13:44:01.558325"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.6ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 11], ["created_at", "2020-05-21 13:44:01.591657"], ["updated_at", "2020-05-21 13:44:01.591657"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 10], ["attended_event_id", 12], ["created_at", "2020-05-21 13:44:01.618448"], ["updated_at", "2020-05-21 13:44:01.618448"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ankara"], ["created_at", "2020-05-21 13:44:01.642144"], ["updated_at", "2020-05-21 13:44:01.642144"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Athens"], ["created_at", "2020-05-21 13:44:01.659328"], ["updated_at", "2020-05-21 13:44:01.659328"]]
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Skywalker"], ["created_at", "2020-05-21 13:44:01.671450"], ["updated_at", "2020-05-21 13:44:01.671450"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Starwars"], ["created_at", "2020-05-21 13:44:01.692262"], ["updated_at", "2020-05-21 13:44:01.692262"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Frodo"], ["created_at", "2020-05-21 13:44:01.711436"], ["updated_at", "2020-05-21 13:44:01.711436"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Gandalf"], ["created_at", "2020-05-21 13:44:01.730843"], ["updated_at", "2020-05-21 13:44:01.730843"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Ring"], ["created_at", "2020-05-21 13:44:01.750329"], ["updated_at", "2020-05-21 13:44:01.750329"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Smeagol"], ["created_at", "2020-05-21 13:44:01.778963"], ["updated_at", "2020-05-21 13:44:01.778963"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-05-21 16:44:18 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 404 Not Found in 32ms (ActiveRecord: 3.8ms | Allocations: 4411)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=20):
+  
+app/controllers/application_controller.rb:8:in `current_user'
+Started GET "/" for ::1 at 2020-05-21 16:44:34 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 11.4ms | Allocations: 4341)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 31.8ms | ActiveRecord: 0.2ms | Allocations: 11985)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:44:38 +0300
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:44:38.447680')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:44:38.447872')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 84.2ms | Allocations: 16246)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 106ms (Views: 89.7ms | ActiveRecord: 5.3ms | Allocations: 22549)
+
+
+Started GET "/events/7" for ::1 at 2020-05-21 16:44:40 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 54.3ms | Allocations: 7225)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 76ms (Views: 64.6ms | ActiveRecord: 3.1ms | Allocations: 12415)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:45:38 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 18.3ms | Allocations: 2101)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 32.6ms | ActiveRecord: 1.0ms | Allocations: 5918)
+
+
+Started GET "/sessions/new.18" for ::1 at 2020-05-21 16:45:41 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 332)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:45:42 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 2095)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 43ms (Views: 38.6ms | ActiveRecord: 0.9ms | Allocations: 6975)
+
+
+Started GET "/users/18" for ::1 at 2020-05-21 16:45:44 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 18]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:45:44.019895')[0m  [["attendee_id", 18]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:45:44.022007')[0m  [["attendee_id", 18]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 23.8ms | Allocations: 2542)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 57ms (Views: 40.1ms | ActiveRecord: 3.3ms | Allocations: 9301)
+
+
+Started GET "/sessions/destroy" for ::1 at 2020-05-21 16:45:54 +0300
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 835)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:45:54 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 2098)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 24.0ms | ActiveRecord: 0.5ms | Allocations: 5931)
+
+
+Started GET "/sessions/new.3" for ::1 at 2020-05-21 16:45:58 +0300
+Processing by SessionsController#new as 
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 303)
+
+
+Started GET "/" for ::1 at 2020-05-21 16:45:58 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  Rendered users/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 2097)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 38ms (Views: 32.4ms | ActiveRecord: 1.1ms | Allocations: 6998)
+
+
+Started GET "/users/3" for ::1 at 2020-05-21 16:46:00 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:46:00.686468')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (2.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:46:00.686732')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 19.1ms | Allocations: 2427)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 45ms (Views: 35.0ms | ActiveRecord: 4.4ms | Allocations: 8324)
+
+
+Started GET "/events/new" for ::1 at 2020-05-21 16:46:24 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:10:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 22.4ms | Allocations: 4231)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 53ms (Views: 42.9ms | ActiveRecord: 0.3ms | Allocations: 9836)
+
+
+Started GET "/events" for ::1 at 2020-05-21 16:46:25 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 13:46:25.901548')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 13:46:25.901941')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 120.8ms | Allocations: 19864)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 141ms (Views: 128.0ms | ActiveRecord: 10.0ms | Allocations: 24882)
+
+
+Started GET "/users/3" for ::1 at 2020-05-21 16:46:29 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:46:29.816637')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:46:29.816806')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:28
+  Rendered users/show.html.erb within layouts/application (Duration: 12.4ms | Allocations: 2427)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 35ms (Views: 26.3ms | ActiveRecord: 1.8ms | Allocations: 8364)
+
+
+Started GET "/users/3" for ::1 at 2020-05-21 16:47:34 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `show'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-21 13:47:34.414726')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-21 13:47:34.415283')[0m  [["attendee_id", 3]]
+  ↳ app/views/users/show.html.erb:29
+  Rendered users/show.html.erb within layouts/application (Duration: 12.0ms | Allocations: 3131)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 38ms (Views: 25.7ms | ActiveRecord: 1.8ms | Allocations: 10064)
+
+
+Started GET "/events/4" for ::1 at 2020-05-21 16:47:37 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 4]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 10.0ms | Allocations: 2809)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 36ms (Views: 24.9ms | ActiveRecord: 1.8ms | Allocations: 9474)
+
+
+Started GET "/invitations/create?information%5Bevent_id%5D=4&information%5Bunattendee_id%5D=12" for ::1 at 2020-05-21 16:47:45 +0300
+Processing by InvitationsController#create as HTML
+  Parameters: {"information"=>{"event_id"=>"4", "unattendee_id"=>"12"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[36mInvitation Create (1.5ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 12], ["attended_event_id", 4], ["created_at", "2020-05-21 13:47:46.006614"], ["updated_at", "2020-05-21 13:47:46.006614"]]
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/invitations_controller.rb:12:in `create'
+Redirected to http://localhost:3000/events/4
+Completed 302 Found in 70ms (ActiveRecord: 11.5ms | Allocations: 10720)
+
+
+Started GET "/events/4" for ::1 at 2020-05-21 16:47:46 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 4]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 7.0ms | Allocations: 2465)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 38ms (Views: 24.4ms | ActiveRecord: 1.9ms | Allocations: 8583)
+
+
+Started GET "/events/1" for ::1 at 2020-05-21 16:48:10 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 12.8ms | Allocations: 2530)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 64ms (Views: 26.9ms | ActiveRecord: 1.9ms | Allocations: 8635)
+
+
+Started GET "/events/1" for ::1 at 2020-05-21 16:48:48 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 8.9ms | Allocations: 2530)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 36ms (Views: 22.8ms | ActiveRecord: 1.9ms | Allocations: 8631)
+
+
+Started GET "/events/1" for ::1 at 2020-05-21 17:02:20 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/app/controllers/events_controller.rb:46: syntax error, unexpected `end'
+  end
+  ^~~
+/home/kubilay/Documents/Microverse Projects/RoR/6-associations/private-events/app/controllers/events_controller.rb:51: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/events_controller.rb:46: syntax error, unexpected `end'
+app/controllers/events_controller.rb:51: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/events_controller.rb:46: syntax error, unexpected `end'
+app/controllers/events_controller.rb:51: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/events_controller.rb:46: syntax error, unexpected `end'
+app/controllers/events_controller.rb:51: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/events/1" for ::1 at 2020-05-21 17:02:55 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show_past.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  ↳ app/views/events/show_past.html.erb:9
+  Rendered events/show_past.html.erb within layouts/application (Duration: 17.0ms | Allocations: 3915)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 95ms (Views: 33.3ms | ActiveRecord: 6.3ms | Allocations: 21181)
+
+
+Started GET "/events" for ::1 at 2020-05-21 17:03:02 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 14:03:02.590169')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 14:03:02.590752')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 110.9ms | Allocations: 21254)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 121ms (Views: 105.5ms | ActiveRecord: 11.7ms | Allocations: 26316)
+
+
+Started GET "/events/2" for ::1 at 2020-05-21 17:03:04 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 2]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 2803)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 38ms (Views: 33.0ms | ActiveRecord: 1.1ms | Allocations: 9043)
+
+
+Started GET "/events/8" for ::1 at 2020-05-21 17:03:09 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 8]]
+  ↳ app/views/events/show.html.erb:9
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/event.rb:9:in `unattendees'
+  Rendered events/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2510)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 31ms (Views: 18.2ms | ActiveRecord: 1.6ms | Allocations: 8590)
+
+
+Started GET "/events/11" for ::1 at 2020-05-21 17:03:12 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show_past.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 11]]
+  ↳ app/views/events/show_past.html.erb:9
+  Rendered events/show_past.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1059)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 37ms (Views: 25.8ms | ActiveRecord: 1.8ms | Allocations: 7155)
+
+
+Started GET "/events" for ::1 at 2020-05-21 17:03:41 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date > '2020-05-21 14:03:41.287727')[0m
+  ↳ app/views/events/index.html.erb:5
+  [1m[36mEvent Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 7], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (date < '2020-05-21 14:03:41.287923')[0m
+  ↳ app/views/events/index.html.erb:20
+  [1m[36mEvent Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 5], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 9], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 10], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  [1m[36mEvent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND "events"."id" = ? LIMIT ?[0m  [["attendee_id", 3], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9:in `invited?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:24
+  Rendered events/index.html.erb within layouts/application (Duration: 115.5ms | Allocations: 20182)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 143ms (Views: 126.4ms | ActiveRecord: 12.3ms | Allocations: 26233)
+
+
+Started GET "/events/3" for ::1 at 2020-05-21 17:03:42 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:24:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:25:in `show'
+  Rendering events/show_past.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 3]]
+  ↳ app/views/events/show_past.html.erb:9
+  Rendered events/show_past.html.erb within layouts/application (Duration: 7.3ms | Allocations: 1254)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:13
+Completed 200 OK in 54ms (Views: 41.6ms | ActiveRecord: 1.3ms | Allocations: 7502)
+
+

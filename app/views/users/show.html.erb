@@ -17,6 +17,7 @@
   <% @upcoming_events.each do |event| %>
     <li>
       <%= event.description %> | <%= event.date %>
+      <%= link_to 'Show', event_path(event.id) %>
     </li>
   <% end %>
 </ol>
@@ -28,6 +29,7 @@
     <% @prev_events.each do |event| %>
       <li>
         <%= event.description %> | <%= event.date %>
+        <%= link_to 'Show', event_path(event.id) %>
       </li>
     <% end %>
 </ol>

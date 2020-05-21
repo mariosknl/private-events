@@ -23,6 +23,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = @event.creator
+
+    if @event.date < Time.now
+      render :show_past
+    else
+      render :show
+    end
   end
 
   def invite_creator
