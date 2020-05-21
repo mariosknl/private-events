@@ -22,8 +22,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @events = @user.events
 
-    @upcoming_events = @user.upcoming_events
-    @prev_events = @user.prev_events
+    @upcoming_events = @user.attended_events.upcoming_events
+    @prev_events = @user.attended_events.prev_events
   end
 
   private
@@ -34,5 +34,6 @@ class UsersController < ApplicationController
 
   def current_user
     @current_user_id = session[:current_user_id]
+    @current_user = User.find(@current_user_id) if @current_user_id
   end
 end

@@ -1,6 +1,6 @@
-<h1>Show User</h1>
+<h1><strong> <%= @user.name %> </strong>  </h1>
 
-<h3>Events of <%= @user.name %> </h3>
+<h3>Events List <strong> <%= @user.name %> </strong> Created </h3>
 <ol>
   <% @events.each do |event| %>
     <li>
@@ -11,14 +11,6 @@
 </ol>
 
 <h3>Event <%= @user.name %> is invited:</h3>
-
-<ol>
-  <% @user.attended_events.each do |event| %>
-    <li>
-      <%= event.description %>
-    </li>
-  <% end %>
-</ol>
 
 <h3>Upcoming Events</h3>
 <ol>
@@ -33,7 +25,7 @@
 
 <h3>Previous Events</h3>
 <ol>
-    <% @prev_events.each do |event| %> 
+    <% @prev_events.each do |event| %>
       <li>
         <%= event.description %> | <%= event.date %>
       </li>
