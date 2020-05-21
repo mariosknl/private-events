@@ -10,4 +10,12 @@
   <% end %>
 </ol>
 
+<h3>Event <%= @user.name %> is invited:</h3>
 
+<ol>
+  <% @user.attended_events.each do |event| %>
+    <li>
+      <%= event.description %>
+    </li>
+  <% end %>
+</ol>
