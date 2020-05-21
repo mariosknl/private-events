@@ -2,3 +2,13 @@
 <h3>The creator of this event is:<%= @user.name %></h3>
 <h4>Location: <%= @event.location %></h4>
 <h4>Date: <%= @event.date %></h4>
+
+<h3>Attendees</h3>
+
+<ol>
+  <% @event.attendees.each do |attendee| %>
+    <li>
+      <%= attendee.name %>
+    </li>
+  <% end %>
+</ol>
