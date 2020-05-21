@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  after_action :invite_creator, only: [:create]
   def index
     @events = Event.all.order('created_at DESC')
     @upcoming_events = Event.upcoming_events
@@ -22,6 +23,13 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = @event.creator
+  end
+
+  def invite_creator
+    Invitation.create(
+      attendee_id: @current_user.id,
+      attended_event_id: @event.id
+    )
   end
 
   private

@@ -13,4 +13,12 @@
   <% end %>
 </ol>
 
-
+<h3>You can invite these people!!!</h3>
+<ol>
+  <% @event.unattendees.each do |unattendee| %>
+    <li>
+      <%= unattendee.name %>
+      <% link_to 'Invite', invitations_create_path(unattendee.id, @event.id) %>
+    </li>
+  <% end %>
+</ol>
