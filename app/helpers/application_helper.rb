@@ -5,9 +5,9 @@ module ApplicationHelper
   end
 
   def my_page_links
-    (li_na = "My Events (#{@current_user.name})") unless session[:cid].nil?
-    (cid = @current_user_id) unless session[:cid].nil?
-    (link_to li_na, user_path(cid), class: 'nav-link') unless session[:cid].nil?
+    return if session[:current_user_id].nil?
+
+    link_to "My Events (#{@current_user.name})", user_path(@current_user_id), class: 'nav-link'
   end
 
   def sign_out_links
