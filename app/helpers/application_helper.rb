@@ -13,9 +13,9 @@ module ApplicationHelper
 
   def sign_out_links
     if session[:current_user_id].nil?
-      link_to 'Sign In', new_session_path
+      link_to 'Sign In', new_session_path, class: 'nav-link'
     else
-      link_to 'Sign Out', session_path(@current_user_id), method: :delete
+      link_to 'Sign Out', session_path(@current_user_id), method: :delete, class: 'nav-link'
     end
   end
 
