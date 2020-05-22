@@ -9,5 +9,24 @@ RSpec.describe User, type: :model do
     it 'has many events' do
       expect(user).to respond_to(:events)
     end
+
+    it 'has many invitations' do
+      expect(user).to respond_to(:invitations)
+    end
+
+    it 'has many attended_events' do
+      expect(user).to respond_to(:attended_events)
+    end
+  end
+
+  describe 'validations' do
+    it 'must have a name' do
+      expect(user).to be_valid
+    end
+
+    it 'is not valid without a name' do
+      user.name = nil
+      expect(user).not_to be_valid
+    end
   end
 end

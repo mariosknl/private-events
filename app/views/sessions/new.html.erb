@@ -1,2 +1,7 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Sign In Page</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name  %>
+  <%= f.text_field :name, placeholder: 'Marios', required: true %>
+  <%= f.submit 'Sign In' %>
+<% end %>
