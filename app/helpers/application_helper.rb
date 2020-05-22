@@ -1,14 +1,13 @@
 module ApplicationHelper
   def welcome_links
-    if @current_user.nil?
-      'Stranger'
-    else
-      @username = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
-    end
+    @user = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
+    ('Welcome ' + @user) unless @current_user.nil?
   end
 
   def my_page_links
-    link_to "My Events (#{@current_user.name})", user_path(@current_user_id) unless session[:current_user_id].nil?
+    (li_na = "My Events (#{@current_user.name})") unless session[:cid].nil?
+    (cid = @current_user_id) unless session[:cid].nil?
+    (link_to li_na, user_path(cid), class: 'nav-link') unless session[:cid].nil?
   end
 
   def sign_out_links
@@ -20,10 +19,10 @@ module ApplicationHelper
   end
 
   def create_event_link
-    link_to '| Create New Event', new_event_path unless session[:current_user_id].nil?
+    link_to 'Create New Event', new_event_path, class: 'nav-link' unless session[:current_user_id].nil?
   end
 
   def events_calendar_link
-    link_to '| Events Calendar', events_path unless session[:current_user_id].nil?
+    link_to 'Events Calendar', events_path, class: 'nav-link' unless session[:current_user_id].nil?
   end
 end

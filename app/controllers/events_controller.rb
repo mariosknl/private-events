@@ -4,6 +4,8 @@ class EventsController < ApplicationController
     @events = Event.all.order('created_at DESC')
     @upcoming_events = Event.upcoming_events
     @prev_events = Event.prev_events
+
+    redirect_to new_session_path if @current_user.nil?
   end
 
   def new
