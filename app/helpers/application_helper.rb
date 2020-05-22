@@ -1,6 +1,10 @@
 module ApplicationHelper
   def welcome_links
-    @username = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
+    if @current_user.nil?
+      'Stranger'
+    else
+      @username = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
+    end
   end
 
   def my_page_links
@@ -9,9 +13,9 @@ module ApplicationHelper
 
   def sign_out_links
     if session[:current_user_id].nil?
-      link_to 'Sign In', sessions_new_path
+      link_to 'Sign In', new_session_path
     else
-      link_to 'Sign Out', sessions_destroy_path
+      link_to 'Sign Out', session_path(@current_user_id), method: :delete
     end
   end
 

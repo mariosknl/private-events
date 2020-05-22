@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'invitations/create'
-  get 'invitations/new'
+  resources :invitations, only: [:new, :create]
   resources :events
-  get 'sessions/new'
-  get 'sessions/destroy'
-  get 'sessions/create'
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
   root to: 'users#index'

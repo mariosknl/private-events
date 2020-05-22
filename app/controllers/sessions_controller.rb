@@ -5,9 +5,14 @@ class SessionsController < ApplicationController
 
   def create
     @name = params[:user][:name]
-    @id = User.find_by(name: @name)
-    session[:current_user_id] = @id
-    redirect_to root_path
+    @user = User.new(name: @name)
+    if User.find_by(name: @name)
+      @id = User.find_by(name: @name).id
+      session[:current_user_id] = @id
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy
