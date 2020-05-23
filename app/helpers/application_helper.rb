@@ -2,7 +2,6 @@ module ApplicationHelper
   def welcome_links
     @user = User.find(@current_user_id).name.upcase unless session[:current_user_id].nil?
     ('Welcome ' + @user) unless @current_user.nil?
-    
   end
 
   def my_page_links
@@ -27,4 +26,3 @@ module ApplicationHelper
     link_to 'Events Calendar', events_path, class: 'nav-link text-light' unless session[:current_user_id].nil?
   end
 end
-

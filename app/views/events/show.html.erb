@@ -1,24 +1,30 @@
-<h2>Event Name: <%= @event.description %></h2>
-<h3>The creator of this event is:<%= @user.name %></h3>
-<h4>Location: <%= @event.location %></h4>
-<h4>Date: <%= @event.date %></h4>
-
-<h3>Attendees</h3>
-
-<ol>
-  <% @event.attendees.each do |attendee| %>
-    <li>
-      <%= attendee.name %>
-    </li>
-  <% end %>
-</ol>
-
-<h3>You can invite these people!!!</h3>
-<ol>
-  <% @event.unattendees.each do |unattendee| %>
-    <li>
-      <%= unattendee.name %>
-      <%= link_to 'Invite', invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}), method: :create %>
-    </li>
-  <% end %>
-</ol>
+<div class="card mt-5">
+<div class="row">
+<div class="card-body col-5 p-5">
+  <p class= 'h3'>Event Name: <%= @event.description %></p>
+  <h3>Event's Creator: <%= @user.name %></h3>
+  <h4>Location: <%= @event.location %></h4>
+  <h6>Date: <%= @event.date %></h6>
+</div>
+<div class="col-4">
+  <h3>Attendees</h3>
+  <ol>
+    <% @event.attendees.each do |attendee| %>
+      <li>
+        <%= attendee.name %>
+      </li>
+    <% end %>
+  </ol>
+</div>
+<div class="col-3">
+  <h3>Uninvited People</h3>
+  <ol>
+    <% @event.unattendees.each do |unattendee| %>
+      <li>
+        <%= unattendee.name %>
+        <%= link_to 'Invite', invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}), method: :create %>
+      </li>
+    <% end %>
+  </ol>
+  </div>
+</div>

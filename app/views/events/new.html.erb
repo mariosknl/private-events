@@ -1,11 +1,12 @@
 <h1>Create an Event</h1>
-
-<ul>
-<%= form_for @event do |f| %>
-  <%= f.label :description %>
-  <%= f.text_field :description, placeholder: "Sky Diving", required: true %>
-  <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
-  <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
-  <%= f.submit :Create %>
-<% end %>
-</ul>
+<div class="card">
+  <ul>
+  <%= form_for @event do |f| %>
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "Sky Diving", required: true %>
+    <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+    <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+    <%= f.submit :Create %>
+  <% end %>
+  </ul>
+</div>
