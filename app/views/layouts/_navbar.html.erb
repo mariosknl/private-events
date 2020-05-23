@@ -5,13 +5,13 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto d-flex flex-row">
-      <%= create_event_link %>
-      <%= events_calendar_link %>
+    <ul class="navbar-nav d-flex justify-content-around w-75">
+      <%= create_event_links %>
+      <%= events_calendar_links %>
       <%= my_page_links %>
     </ul>
-    <ul class="navbar-nav d-flex">
-      <%= link_to 'Sign Up', new_user_path, class: 'nav-link' %>
+    <ul class="navbar-nav ml-auto d-flex">
+      <%= sign_up_links %>
       <%= sign_out_links %>
     </ul>
   </div>

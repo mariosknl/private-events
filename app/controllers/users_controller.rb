@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      @user = User.find_by(name: @user.name)
+      redirect_to new_user_path
+      # render 'sessions/new' unless signed_in?
     else
       render :new
     end

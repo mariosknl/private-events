@@ -1,27 +1,47 @@
-<h1>Events Calendar</h1>
+<h3 class="text-center">Upcoming Events</h2>
 
-<h2>Upcoming Events</h2>
-<ol>
-<% current_user.attended_events.upcoming_events.each do |event| %>
-    <li>
-      <strong><%= event.description %></strong>  |
-      <%= event.creator.name %> |
-      <%= event.date %> |
-      <%= event.location %> |
-      <%= link_to 'Show', event_path(event.id) %>
-    </li>
-<% end %>
-</ol>
-
-<h2>Previous Events</h2>
-<ol>
-<% current_user.attended_events.prev_events.each do |event| %>
-    <li>
-      <strong><%= event.description %></strong>  |
-      <%= event.creator.name %> |
-      <%= event.date %> |
-      <%= event.location %> |
-      <%= link_to 'Show', event_path(event.id) %>
-    </li>
-<% end %>
-</ol>
+<table class="table w-75 m-auto">
+    <thead class="thead-dark">
+        <tr>
+            <th>Description</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Show Event Page</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% current_user.attended_events.upcoming_events.each do |event| %>
+        <tr>
+            <td><%= event.description %></td>
+            <td><%= event.creator.name %></td>
+            <td><%= event.date %></td>
+            <td><%= event.location %></td>
+            <td><%= link_to 'Show', event_path(event.id) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<h3 class="text-center mt-5">Previous Events</h2>
+<table class="table w-75 m-auto">
+    <thead class="thead-dark">
+        <tr>
+            <th>Description</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Show Event Page</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% current_user.attended_events.prev_events.each do |event| %>
+        <tr>
+            <td><%= event.description %></td>
+            <td><%= event.creator.name %></td>
+            <td><%= event.date %></td>
+            <td><%= event.location %></td>
+            <td><%= link_to 'Show', event_path(event.id) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
