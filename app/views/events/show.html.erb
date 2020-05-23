@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-xl-12">
       <h2 class="my-5 text-center display-4">
+        <span class="text-white">
+          <i class="fas fa-glass-cheers"></i>
+        </span>
         <span class="badge badge-warning">
         <%= @event.description %>
         <span class="badge badge-pill badge-success"> <%=@event.attendees.count%> </span>
@@ -43,7 +46,7 @@
       <table class="table mb-0">
         <tbody>
           <tr>
-            <td class="text-center"><h5>Attendees</h5></td>
+            <td class="text-center text-white"><h5>Attendees</h5></td>
           </tr>
         </tbody>
       </table>
@@ -70,7 +73,7 @@
       <table class="table mb-0">
         <tbody>
           <tr>
-            <td class="text-center"><h5>You can invite these people!</h5></td>
+            <td class="text-center text-white"><h5>You can invite these people!</h5></td>
           </tr>
         </tbody>
       </table>
@@ -79,7 +82,7 @@
               <tr >
                 <th></th>
                 <th>Name</th>
-                <th>Invite</th>
+                <th class="text-center">Invite</th>
               </tr>
           </thead>
           <tbody>
@@ -87,7 +90,9 @@
               <tr class="table-warning">
                 <td><%= index + 1 %></td>
                 <td><%= unattendee.name %></td>
-                <td><%= link_to 'Invite', invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}), method: :create %></td>
+                <td class="text-center"><%= link_to 'Invite',
+                  invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}),
+                  method: :create, class: "btn btn-success btn-sm px-5 w-75" %></td>
               </tr>
               <% end %>
           </tbody>

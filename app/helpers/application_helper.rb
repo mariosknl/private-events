@@ -6,33 +6,29 @@ module ApplicationHelper
   def my_page_links
     return unless signed_in?
 
-    class_name = if %r{^/users/\d+}.match(current_path)
-                   'nav-link text-success'
-                 else
-                   'nav-link'
-                 end
-    link_to "My Events (#{current_user.name})", user_path(current_user_id), class: class_name
+    @class_name = if %r{^/users/\d+}.match(current_path)
+                    'nav-link text-success'
+                  else
+                    'nav-link'
+                  end
+    render 'layouts/my_events_links'
   end
 
   def sign_out_links
     if signed_in?
-      link_to 'Sign Out', session_path(current_user_id), method: :delete, class: 'nav-link'
+      render 'sessions/sign_in'
     else
-      link_to 'Sign In', new_session_path, class: class_namer('/sessions/new', 'success')
+      render 'sessions/sign_out'
     end
   end
 
   def create_event_links
-    link_to 'Create New Event', new_event_path, class: class_namer('/events/new', 'warning') if signed_in?
+    render 'layouts/create_new_event' if signed_in?
   end
 
   def events_calendar_links
-    class_name = current_path == '/' || current_path == '/events' ? 'nav-link text-success ' : 'nav-link'
-    link_to 'Events Calendar', events_path, class: class_name if signed_in?
-  end
-
-  def sign_up_links
-    link_to 'Sign Up', new_user_path, class: class_namer('/users/new', 'warning')
+    @class_name = current_path == '/' || current_path == '/events' ? 'nav-link text-success ' : 'nav-link'
+    render 'layouts/events_calendar_links' if signed_in?
   end
 
   private

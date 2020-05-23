@@ -1,9 +1,9 @@
 
 <div class="container-fluid w-75 mb-5">
-  <h3 class="text-center mt-4">
+  <h3 class="text-center mt-4 text-white">
     Events Lists <strong> <%= @user.name %> </strong> Created
-    <span class="badge badge-success ml-5 p-2">
-      <%= link_to '+ New', new_event_path, class: "text-warning p-2" %>
+    <span class="btn btn-success ml-5 p-2">
+      <%= link_to '+ New', new_event_path, class: "text-white p-2 nav-link link-color-danger" %>
     </span>
 
   </h3>
@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             <% @events.each do |event| %>
-              <tr>
+              <tr class="table-primary">
                 <td>
                   <%= badge_selector(event) %>
                 </td>
@@ -30,7 +30,7 @@
                 <td><%= event.creator.name %></td>
                 <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                 <td><%= event.location %></td>
-                <td><%= link_to 'Details', event_path(event.id) %></td>
+                <td><%= link_to 'Details', event_path(event.id), class: "btn btn-success btn-sm px-5" %></td>
               </tr>
               <% end %>
           </tbody>
@@ -38,10 +38,10 @@
 
     </div>
   </div>
-  <h3 class="text-center my-4">Events Lists <strong> <%= @user.name %> </strong> Invited </h3>
+  <h3 class="text-center my-4 text-white">Events Lists <strong> <%= @user.name %> </strong> Invited </h3>
   <div class="row">
     <div class="col-xl-6">
-      <h5 class="text-center my-1">Upcoming</h5>
+      <h5 class="text-center my-1 text-white">Upcoming</h5>
       <table class="table">
           <thead class="thead-dark">
               <tr>
@@ -53,18 +53,18 @@
           </thead>
           <tbody>
             <% @upcoming_events.each do |event| %>
-              <tr>
+              <tr class="table-primary">
                   <td><%= event.description %></td>
                   <td><%= event.location %></td>
                   <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-                  <td><%= link_to 'Show', event_path(event.id) %></td>
+                  <td><%= link_to 'Show', event_path(event.id), class: "btn btn-success btn-sm" %></td>
               </tr>
               <% end %>
           </tbody>
       </table>
     </div>
     <div class="col-xl-6">
-      <h5 class="text-center my-1">Previous</h5>
+      <h5 class="text-center my-1 text-white">Previous</h5>
       <table class="table">
           <thead class="thead-dark">
               <tr>
@@ -76,11 +76,11 @@
           </thead>
           <tbody>
             <% @prev_events.each do |event| %>
-              <tr>
+              <tr class="table-secondary">
                   <td><%= event.description %></td>
                   <td><%= event.location %></td>
                   <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-                  <td><%= link_to 'Show', event_path(event.id) %></td>
+                  <td><%= link_to 'Show', event_path(event.id), class: "btn btn-warning btn-sm" %></td>
               </tr>
               <% end %>
           </tbody>

@@ -4,7 +4,7 @@
   <div class="row text-center">
     <div class="col-xl-12 text-center">
       <h2 class="my-5 text-center display-4">
-        <span class="badge badge-warning">
+        <span class="badge badge-warning text-white">
       CREATE NEW EVENT
         </span>
       </h2>
@@ -12,30 +12,40 @@
         <%= form_for @event do |f| %>
 
           <table class="table">
-            <tr>
+            <tr class="table-primary">
               <td>
                 <h4 class="p-3 mb-0">
                   <%= f.label :description %>
+                  <span class="ml-3">
+                  <i class="fas fa-info"></i>
+                  </span>
                   </h4>
               </td>
               <td>
                 <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: "w-100 p-3"  %>
               </td>
             </tr>
-            <tr>
+            <tr class="table-success">
               <td>
+
                 <h4 class="p-3 mb-0">
-                <%= f.label :date %>
+                  <%= f.label :date %>
+                  <span class="ml-3">
+                  <i class="fas fa-table"></i>
+                  </span>
                 </h4>
               </td>
               <td>
                 <%= f.datetime_field :date, required: true, class: "w-100 p-3" %>
               </td>
             </tr>
-            <tr>
+            <tr class="table-info">
               <td>
                 <h4 class="p-3 mb-0">
                 <%= f.label :location %>
+                <span class="ml-3">
+                  <i class="fas fa-location-arrow"></i>
+                </span>
                 </h4>
               </td>
               <td>
@@ -47,7 +57,7 @@
               </td>
             </tr>
           </table>
-          <%= f.submit :Create, class: "btn btn-primary p-3 px-5 w-50" %>
+          <%= f.submit :Create, class: "btn btn-success p-3 px-5 w-50" %>
         <% end %>
 
     </div>
