@@ -2,7 +2,7 @@
 
 <h2>Upcoming Events</h2>
 <ol>
-<% @current_user.attended_events.upcoming_events.each do |event| %>
+<% current_user.attended_events.upcoming_events.each do |event| %>
     <li>
       <strong><%= event.description %></strong>  |
       <%= event.creator.name %> |
@@ -15,7 +15,7 @@
 
 <h2>Previous Events</h2>
 <ol>
-<% @current_user.attended_events.prev_events.each do |event| %>
+<% current_user.attended_events.prev_events.each do |event| %>
     <li>
       <strong><%= event.description %></strong>  |
       <%= event.creator.name %> |
