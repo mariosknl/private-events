@@ -6,6 +6,7 @@
       <table class="table">
           <thead class="thead-dark">
               <tr>
+                <th>Status</th>
                 <th>Description</th>
                 <th>Creator</th>
                 <th>Date</th>
@@ -16,6 +17,9 @@
           <tbody>
             <% @events.each do |event| %>
               <tr>
+                <td>
+                  <%= badge_selector(event) %>
+                </td>
                 <td><%= event.description %></td>
                 <td><%= event.creator.name %></td>
                 <td><%= event.date %></td>

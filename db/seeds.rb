@@ -5,33 +5,47 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user_names = ["Marios","Kubilay","Luke", "Jimi", "Adrian", "Starbucks", "Coffee",
-  "Arbat", "Egnatia", "Patras"]
+
+
+user_names = ["Forger","Frodo", "Gandalf", "Legolas", "Boromir", "Sauron",
+  "Pippin", "Bilbo", "Saruman","Galadriel", "Madril", "Elanor", "Uruk", "Merry",
+    "Gimli", "Gollum", "King", "Smeagol", "Isildur"]
 
 user_names.each do |name|
   User.create(name: name)
 end
 
-events = ["Metallica Concert","Classical Music Concert",
-  "Jazz Sessions","DJ Set","Ballet Show","Circus", "Cinema",
-  "Going to Mordor", "Friends Meeting", "Beer Contest", "Hackaton", "Going to Mars"]
+team_1 = ["Forger", "Frodo", "Gandalf", "Legolas", "Boromir",
+  "Pippin", "Bilbo", "Galadriel", "Elanor", "Merry",
+    "Gimli", "King", "Isildur"]
+team_2 = ["Sauron", "Saruman", "Madril", "Uruk", "Gollum", "Smeagol"]
 
-date = ["2020-02-06","2021-02-02"]
+events = [
+  ["Forger","Forging One Ring","Mountains","1600-02-06 10:00"],
+  ["Sauron","War of the Elves and Sauron","Mountains","1693-01-12 22:00"],
+  ["Isildur","War of Sauron and Isildur","Middle Earth","1741-12-10 18:00"],
+  ["Isildur","Ring Celebration Party","Castle","1741-12-11 19:00"],
+  ["Gollum","Finding the Ring Celebration","My Cave","1801-02-05 15:00"],
+  ["Bilbo","Finding the Ring Celebration","Hobitton","1941-10-10 10:10"],
+  ["Gollum","Search For The Ring","Mountains","1950-06-12"],
+  ["Bilbo", "Bilbo's Party", "Hobbiton", "2001-09-22 12:00" ],
+  ["Frodo","Taking The Ring Back To The Mordor","Mordor","2021-02-02 02:02"],
+  ["Legolas","Arrow Party","Garden","2021-03-01 03:01"],
+  ["Gandalf","Looking At The Dawn","Mountains","2021-03-02 05:30"],
+  ["Boromir","War Field","Undying Lands","2023-05-05 12:30"],
+  ["Sauron","Killing Frodo and Friends","Mordor","2021-03-02 05:30"]
+]
 
-6.times do |index|
-  User.first.events.create(description: events[index], location: "Greece/Patras", date: date.sample)
-  User.find(2).events.create(description: events[11-index], location: "Turkey/Ankara", date: date.sample)
+events.each do |event|
+  User.find_by(name: event[0]).events.create(description: event[1], location: event[2], date: event[3])
 end
 
-User.all.ids.each do |user_id|
-  Event.all.ids.each do |event_id|
+Event.all.each do |event|
+  event_id = event.id
+  creator = event.creator.name
+  team = team_1.include?(creator) ? team_1 : team_2
+  team.each do |member|
+    user_id = User.find_by(name: member).id
     Invitation.create(attendee_id: user_id, attended_event_id: event_id)
   end
-end
-
-user_names = ["Ankara", "Athens", "Skywalker", "Starwars", "Frodo",
-  "Gandalf", "The Ring", "Smeagol"]
-
-user_names.each do |name|
-  User.create(name: name)
 end

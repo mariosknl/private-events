@@ -1,10 +1,14 @@
-<h3 class="my-2 text-center">Create a New User</h3>
+<h5 class="my-5 text-center text-warning display-4">
 
+Create a new user with name...
+
+</h5>
 
 <div class="form-signin w-25 m-auto">
   <%= form_for @user, class: 'form-signin w-25 m-auto' do |f| %>
     <%= f.label :name, class: 'sr-only'  %>
-    <%= f.text_field :name, placeholder: 'Create a new user...', required: true, class: 'form-control p-3 h3' %>
-    <%= f.submit 'Create', class: 'btn btn-lg btn-primary btn-block mt-5' %>
+    <%= f.text_field :name, placeholder: 'New user name',
+    required: true, class: 'form-control p-3 h3 text-center py-4' %>
+    <%= f.submit 'Create', class: 'btn btn-lg btn-warning btn-block mt-5' %>
   <% end %>
 </div>

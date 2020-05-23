@@ -3,21 +3,23 @@
 <table class="table w-75 m-auto">
     <thead class="thead-dark">
         <tr>
+          <th>Status</th>
             <th>Description</th>
             <th>Creator</th>
             <th>Date</th>
             <th>Location</th>
-            <th>Show Event Page</th>
+            <th class="text-center">Show Event Page</th>
         </tr>
     </thead>
     <tbody>
       <% current_user.attended_events.upcoming_events.each do |event| %>
         <tr>
-            <td><%= event.description %></td>
+          <td><span class="badge badge-success p-2">Upcoming</span></td>
+            <td class="text-success"><strong><%= event.description %></strong></td>
             <td><%= event.creator.name %></td>
             <td><%= event.date %></td>
             <td><%= event.location %></td>
-            <td><%= link_to 'Show', event_path(event.id) %></td>
+            <td class="text-center"><%= link_to 'Show', event_path(event.id) %></td>
         </tr>
         <% end %>
     </tbody>
@@ -26,21 +28,23 @@
 <table class="table w-75 m-auto mb-5">
     <thead class="thead-dark">
         <tr>
+          <th>Status</th>
             <th>Description</th>
             <th>Creator</th>
             <th>Date</th>
             <th>Location</th>
-            <th>Show Event Page</th>
+            <th class="text-center">Show Event Page</th>
         </tr>
     </thead>
     <tbody>
       <% current_user.attended_events.prev_events.each do |event| %>
         <tr>
-            <td><%= event.description %></td>
+          <td><span class="badge badge-warning p-2">Past</span></td>
+            <td class="text-secondary"><strong><%= event.description %></strong></td>
             <td><%= event.creator.name %></td>
             <td><%= event.date %></td>
             <td><%= event.location %></td>
-            <td><%= link_to 'Show', event_path(event.id) %></td>
+            <td class="text-center"><%= link_to 'Show', event_path(event.id) %></td>
         </tr>
         <% end %>
     </tbody>
