@@ -17,7 +17,7 @@
           <td><span class="badge badge-success p-2">Upcoming</span></td>
             <td class="text-success"><strong><%= event.description %></strong></td>
             <td><%= event.creator.name %></td>
-            <td><%= event.date %></td>
+            <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
             <td><%= event.location %></td>
             <td class="text-center"><%= link_to 'Show', event_path(event.id) %></td>
         </tr>
@@ -42,7 +42,7 @@
           <td><span class="badge badge-warning p-2">Past</span></td>
             <td class="text-secondary"><strong><%= event.description %></strong></td>
             <td><%= event.creator.name %></td>
-            <td><%= event.date %></td>
+            <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
             <td><%= event.location %></td>
             <td class="text-center"><%= link_to 'Show', event_path(event.id) %></td>
         </tr>

@@ -1,6 +1,12 @@
 
 <div class="container-fluid w-75 mb-5">
-  <h3 class="text-center mt-4">Events Lists <strong> <%= @user.name %> </strong> Created </h3>
+  <h3 class="text-center mt-4">
+    Events Lists <strong> <%= @user.name %> </strong> Created
+    <span class="badge badge-success ml-5 p-2">
+      <%= link_to '+ New', new_event_path, class: "text-warning p-2" %>
+    </span>
+
+  </h3>
   <div class="row mb-5">
     <div class="col-xl-12">
       <table class="table">
@@ -22,7 +28,7 @@
                 </td>
                 <td><%= event.description %></td>
                 <td><%= event.creator.name %></td>
-                <td><%= event.date %></td>
+                <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                 <td><%= event.location %></td>
                 <td><%= link_to 'Details', event_path(event.id) %></td>
               </tr>
@@ -50,7 +56,7 @@
               <tr>
                   <td><%= event.description %></td>
                   <td><%= event.location %></td>
-                  <td><%= event.date %></td>
+                  <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                   <td><%= link_to 'Show', event_path(event.id) %></td>
               </tr>
               <% end %>
@@ -73,7 +79,7 @@
               <tr>
                   <td><%= event.description %></td>
                   <td><%= event.location %></td>
-                  <td><%= event.date %></td>
+                  <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                   <td><%= link_to 'Show', event_path(event.id) %></td>
               </tr>
               <% end %>
