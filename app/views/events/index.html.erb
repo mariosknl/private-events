@@ -1,27 +1,29 @@
-<h1>Events Calendar</h1>
+<div class="container-fluid position-absolute top m-auto">
+  <h1>Events Calendar</h1>
 
-<h2>Upcoming Events</h2>
-<ol>
-<% @current_user.attended_events.upcoming_events.each do |event| %>
-    <li>
-      <strong><%= event.description %></strong>  |
-      <%= event.creator.name %> |
-      <%= event.date %> |
-      <%= event.location %> |
-      <%= link_to 'Show', event_path(event.id) %>
-    </li>
-<% end %>
-</ol>
+  <h2>Upcoming Events</h2>
+  <ul>
+  <% @current_user.attended_events.upcoming_events.each do |event| %>
+      <li>
+        <strong><%= event.description %></strong>  |
+        <%= event.creator.name %> |
+        <%= event.date %> |
+        <%= event.location %> |
+        <%= link_to 'Show', event_path(event.id) %>
+      </li>
+  <% end %>
+  </ul>
 
-<h2>Previous Events</h2>
-<ol>
-<% @current_user.attended_events.prev_events.each do |event| %>
-    <li>
-      <strong><%= event.description %></strong>  |
-      <%= event.creator.name %> |
-      <%= event.date %> |
-      <%= event.location %> |
-      <%= link_to 'Show', event_path(event.id) %>
-    </li>
-<% end %>
-</ol>
+  <h2>Previous Events</h2>
+  <ul>
+  <% @current_user.attended_events.prev_events.each do |event| %>
+      <li>
+        <strong><%= event.description %></strong>  |
+        <%= event.creator.name %> |
+        <%= event.date %> |
+        <%= event.location %> |
+        <%= link_to 'Show', event_path(event.id) %>
+      </li>
+  <% end %>
+  </ul>
+</div>
