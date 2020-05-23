@@ -1,24 +1,98 @@
-<h2>Event Name: <%= @event.description %></h2>
-<h3>The creator of this event is:<%= @user.name %></h3>
-<h4>Location: <%= @event.location %></h4>
-<h4>Date: <%= @event.date %></h4>
+<div class="container-fluid mt-1 px-5">
+  <div class="row">
+    <div class="col-xl-12">
+      <h2 class="my-5 text-center display-4">
+        <span class="badge badge-warning">
+        <%= @event.description %>
+        <span class="badge badge-pill badge-success"> <%=@event.attendees.count%> </span>
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-4">
 
-<h3>Attendees</h3>
 
-<ol>
-  <% @event.attendees.each do |attendee| %>
-    <li>
-      <%= attendee.name %>
-    </li>
-  <% end %>
-</ol>
+      <table class="table table-dark mb-0">
+        <tbody>
+          <tr>
+            <td class="text-center"><h3>Event Details</h3></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
+          <tr class="table-primary">
+            <td class="lead">Creator</td>
+            <td class="text-center text-danger"><strong><%= @user.name %></strong></td>
+          </tr>
+          <tr class="table-primary">
+            <td class="lead">Location</td>
+            <td class="text-center text-danger"><strong><%= @event.location %></strong></td>
+          </tr>
+          <tr class="table-primary">
+            <td class="lead">Date</td>
+            <td class="text-center text-danger"><strong><%= @event.date %></strong></td>
+          </tr>
+        </tbody>
+      </table>
 
-<h3>You can invite these people!!!</h3>
-<ol>
-  <% @event.unattendees.each do |unattendee| %>
-    <li>
-      <%= unattendee.name %>
-      <%= link_to 'Invite', invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}), method: :create %>
-    </li>
-  <% end %>
-</ol>
+    </div>
+    <div class="col-xl-4">
+
+      <table class="table mb-0">
+        <tbody>
+          <tr>
+            <td class="text-center"><h5>Attendees</h5></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+          <thead class="thead-dark">
+              <tr>
+                <th></th>
+                <th>Name</th>
+
+              </tr>
+          </thead>
+          <tbody>
+            <% @event.attendees.each_with_index do |attendee, index| %>
+              <tr class="table-success">
+                <td><%= index + 1 %></td>
+                <td><%= attendee.name %></td>
+              </tr>
+              <% end %>
+          </tbody>
+      </table>
+    </div>
+
+    <div class="col-xl-4">
+      <table class="table mb-0">
+        <tbody>
+          <tr>
+            <td class="text-center"><h5>You can invite these people!</h5></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+          <thead class="thead-dark">
+              <tr >
+                <th></th>
+                <th>Name</th>
+                <th>Invite</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @event.unattendees.each_with_index do |unattendee, index| %>
+              <tr class="table-warning">
+                <td><%= index + 1 %></td>
+                <td><%= unattendee.name %></td>
+                <td><%= link_to 'Invite', invitations_path("information"=>{ unattendee_id: unattendee.id, event_id: @event.id}), method: :create %></td>
+              </tr>
+              <% end %>
+          </tbody>
+      </table>
+    </div>
+    </div>
+  </div class="row">
+</div>

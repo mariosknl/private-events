@@ -1,64 +1,81 @@
-<h4 class="text-align-center">Events list <strong> <%= @user.name %> </strong> Created </h4>
 
-<table class="table w-25">
-    <thead class="thead-dark">
-        <tr>
-            <th>Description</th>
-            <th>Show Event Page</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |event| %>
-        <tr>
-            <td><%= event.description %></td>
-            <td><%= link_to 'Details', event_path(event.id) %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="container-fluid w-75 mb-5">
+  <h3 class="text-center mt-4">Events Lists <strong> <%= @user.name %> </strong> Created </h3>
+  <div class="row mb-5">
+    <div class="col-xl-12">
+      <table class="table">
+          <thead class="thead-dark">
+              <tr>
+                <th>Description</th>
+                <th>Creator</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Event Page</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event.description %></td>
+                <td><%= event.creator.name %></td>
+                <td><%= event.date %></td>
+                <td><%= event.location %></td>
+                <td><%= link_to 'Details', event_path(event.id) %></td>
+              </tr>
+              <% end %>
+          </tbody>
+      </table>
 
+    </div>
+  </div>
+  <h3 class="text-center my-4">Events Lists <strong> <%= @user.name %> </strong> Invited </h3>
+  <div class="row">
+    <div class="col-xl-6">
+      <h5 class="text-center my-1">Upcoming</h5>
+      <table class="table">
+          <thead class="thead-dark">
+              <tr>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Event Page</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @upcoming_events.each do |event| %>
+              <tr>
+                  <td><%= event.description %></td>
+                  <td><%= event.location %></td>
+                  <td><%= event.date %></td>
+                  <td><%= link_to 'Show', event_path(event.id) %></td>
+              </tr>
+              <% end %>
+          </tbody>
+      </table>
+    </div>
+    <div class="col-xl-6">
+      <h5 class="text-center my-1">Previous</h5>
+      <table class="table">
+          <thead class="thead-dark">
+              <tr>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Event Page</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @prev_events.each do |event| %>
+              <tr>
+                  <td><%= event.description %></td>
+                  <td><%= event.location %></td>
+                  <td><%= event.date %></td>
+                  <td><%= link_to 'Show', event_path(event.id) %></td>
+              </tr>
+              <% end %>
+          </tbody>
+      </table>
 
-
-<h4>Events list <%= @user.name %> is invited:</h4>
-
-<h5>Upcoming Events</h5>
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Show Event Page</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @upcoming_events.each do |event| %>
-        <tr>
-            <td><%= event.description %></td>
-            <td><%= event.date %></td>
-            <td><%= link_to 'Show', event_path(event.id) %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<hr />
-
-<h5>Previous Events</h5>
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Show Event Page</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @prev_events.each do |event| %>
-        <tr>
-            <td><%= event.description %></td>
-            <td><%= event.date %></td>
-            <td><%= link_to 'Show', event_path(event.id) %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+    </div>
+  </div>
+</div>

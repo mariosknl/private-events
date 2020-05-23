@@ -1,9 +1,66 @@
-<ul>
-<%= form_for @event do |f| %>
-  <%= f.label :description %>
-  <%= f.text_field :description, placeholder: "Sky Diving", required: true %>
-  <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
-  <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
-  <%= f.submit :Create %>
-<% end %>
-</ul>
+
+<div class="container text-center">
+
+  <div class="row text-center">
+    <div class="col-xl-12 text-center">
+      <h2 class="my-5 text-center display-4">
+        <span class="badge badge-warning">
+      CREATE NEW EVENT
+        </span>
+      </h2>
+
+        <%= form_for @event do |f| %>
+
+          <table class="table">
+            <tr>
+              <td>
+                <h4 class="p-3 mb-0">
+                  <%= f.label :description %>
+                  </h4>
+              </td>
+              <td>
+                <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: "w-100 p-3"  %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4 class="p-3 mb-0">
+                <%= f.label :date %>
+                </h4>
+              </td>
+              <td>
+                <%= f.date_field :date, value: "2021-08-06", required: true, class: "w-100 p-3" %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4 class="p-3 mb-0">
+                <%= f.label :time %>
+                </h4>
+              </td>
+              <td>
+                <%= f.time_field :date, value: "21:00", required: true, class: "w-100 p-3" %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4 class="p-3 mb-0">
+                <%= f.label :location %>
+                </h4>
+              </td>
+              <td>
+                <%= f.text_field :location, value: "Greece/Patras", required: true, class: "w-100 p-3" %>
+              </td>
+            </tr>
+            <tr>
+              <td >
+              </td>
+            </tr>
+          </table>
+          <%= f.submit :Create, class: "btn btn-primary p-3 px-5 w-50" %>
+        <% end %>
+
+    </div>
+  </div>
+
+</div>
