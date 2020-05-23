@@ -43650,3 +43650,563 @@ Processing by EventsController#new as HTML
 Completed 200 OK in 21ms (Views: 18.3ms | ActiveRecord: 0.3ms | Allocations: 8844)
 
 
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20200523160019)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "byte_size" bigint NOT NULL, "checksum" varchar NOT NULL, "created_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200523160019"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/events/new" for ::1 at 2020-05-23 19:03:30 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 39.2ms | Allocations: 2643)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 427)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 181ms (Views: 86.4ms | ActiveRecord: 1.5ms | Allocations: 27610)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:09:24 +0300
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 878)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 416)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 38ms (Views: 20.8ms | ActiveRecord: 1.2ms | Allocations: 18552)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:09:54 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 817)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 408)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.1ms | Allocations: 8128)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:10:00 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 817)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 408)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 12ms (Views: 8.9ms | ActiveRecord: 0.1ms | Allocations: 8114)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:13:26 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1002)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 408)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 16ms (Views: 14.0ms | ActiveRecord: 0.1ms | Allocations: 8285)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:14:00 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 819)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 413)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.1ms | Allocations: 8097)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:14:10 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 818)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 408)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.1ms | Allocations: 8106)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:14:46 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 818)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 409)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 0.1ms | Allocations: 8089)
+
+
+Started GET "/events/new" for ::1 at 2020-05-23 19:16:29 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 23.8ms | Allocations: 3168)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.1ms | Allocations: 5520)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Create an Event</h1>
+<div class="card">
+
+  <ul>
+  <%= form_for @event do |f| %>
+    <div class="form-group pt-2">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+      <small class='form-text text-muted'>Event's description & Title</small>
+      <br />
+      <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+      <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+      <br /> <br />
+      <%= f.file_field :image %>
+      <%= f.submit, class="btn btn-primary"> :Create %>
+    </div>
+  <% end %>
+  </ul>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+):
+1:    <h1>Create an Event</h1>
+2:    <div class="card">
+3:    
+4:      <ul>
+5:      <%= form_for @event do |f| %>
+6:        <div class="form-group pt-2">
+7:          <%= f.label :description %>
+8:          <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+9:          <small class='form-text text-muted'>Event's description & Title</small>
+10:          <br />
+11:          <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+12:          <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+13:          <br /> <br />
+14:          <%= f.file_field :image %>
+15:          <%= f.submit, class="btn btn-primary"> :Create %>
+16:        </div>
+17:      <% end %>
+18:      </ul>
+19:    </div>
+20:    
+21:    <form>
+22:      <div class="form-group">
+23:        <label for="exampleInputEmail1">Email address</label>
+24:        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+25:        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+26:      </div>
+27:      <div class="form-group">
+28:        <label for="exampleInputPassword1">Password</label>
+29:        <input type="password" class="form-control" id="exampleInputPassword1">
+30:      </div>
+31:      <div class="form-group form-check">
+32:        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+33:        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+34:      </div>
+35:      <button type="submit" class="btn btn-primary">Submit</button>
+36:    </form>
+  
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+app/views/events/new.html.erb:15: syntax error, unexpected '='
+Started GET "/events/new" for ::1 at 2020-05-23 19:17:05 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1163)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.1ms | Allocations: 3581)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Create an Event</h1>
+<div class="card">
+
+  <ul>
+  <%= form_for @event do |f| %>
+    <div class="form-group pt-2">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+      <small class='form-text text-muted'>Event's description & Title</small>
+      <br />
+      <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+      <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+      <br /> <br />
+      <%= f.file_field :image %>
+      <%= f.submit, class: "btn btn-primary"> :Create %>
+    </div>
+  <% end %>
+  </ul>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+):
+1:    <h1>Create an Event</h1>
+2:    <div class="card">
+3:    
+4:      <ul>
+5:      <%= form_for @event do |f| %>
+6:        <div class="form-group pt-2">
+7:          <%= f.label :description %>
+8:          <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+9:          <small class='form-text text-muted'>Event's description & Title</small>
+10:          <br />
+11:          <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+12:          <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+13:          <br /> <br />
+14:          <%= f.file_field :image %>
+15:          <%= f.submit, class: "btn btn-primary"> :Create %>
+16:        </div>
+17:      <% end %>
+18:      </ul>
+19:    </div>
+20:    
+21:    <form>
+22:      <div class="form-group">
+23:        <label for="exampleInputEmail1">Email address</label>
+24:        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+25:        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+26:      </div>
+27:      <div class="form-group">
+28:        <label for="exampleInputPassword1">Password</label>
+29:        <input type="password" class="form-control" id="exampleInputPassword1">
+30:      </div>
+31:      <div class="form-group form-check">
+32:        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+33:        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+34:      </div>
+35:      <button type="submit" class="btn btn-primary">Submit</button>
+36:    </form>
+  
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+Started GET "/events/new" for ::1 at 2020-05-23 19:17:16 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 1162)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 3514)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Create an Event</h1>
+<div class="card">
+
+  <ul>
+  <%= form_for @event do |f| %>
+    <div class="form-group pt-2">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+      <small class='form-text text-muted'>Event's description & Title</small>
+      <br />
+      <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+      <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+      <br /> <br />
+      <%= f.file_field :image %>
+      <%= f.submit, class: "btn btn-primary" :Create %>
+    </div>
+  <% end %>
+  </ul>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+):
+1:    <h1>Create an Event</h1>
+2:    <div class="card">
+3:    
+4:      <ul>
+5:      <%= form_for @event do |f| %>
+6:        <div class="form-group pt-2">
+7:          <%= f.label :description %>
+8:          <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+9:          <small class='form-text text-muted'>Event's description & Title</small>
+10:          <br />
+11:          <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+12:          <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+13:          <br /> <br />
+14:          <%= f.file_field :image %>
+15:          <%= f.submit, class: "btn btn-primary" :Create %>
+16:        </div>
+17:      <% end %>
+18:      </ul>
+19:    </div>
+20:    
+21:    <form>
+22:      <div class="form-group">
+23:        <label for="exampleInputEmail1">Email address</label>
+24:        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+25:        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+26:      </div>
+27:      <div class="form-group">
+28:        <label for="exampleInputPassword1">Password</label>
+29:        <input type="password" class="form-control" id="exampleInputPassword1">
+30:      </div>
+31:      <div class="form-group form-check">
+32:        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+33:        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+34:      </div>
+35:      <button type="submit" class="btn btn-primary">Submit</button>
+36:    </form>
+  
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+app/views/events/new.html.erb:15: syntax error, unexpected tLABEL, expecting '='
+app/views/events/new.html.erb:15: syntax error, unexpected ':', expecting ')'
+Started GET "/events/new" for ::1 at 2020-05-23 21:52:45 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:12:in `new'
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 10.8ms | Allocations: 2883)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 430)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 98ms (Views: 46.2ms | ActiveRecord: 1.1ms | Allocations: 27808)
+
+
+Started GET "/" for ::1 at 2020-05-23 21:52:52 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (9.4ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-23 18:52:52.512649')[0m  [["attendee_id", 1]]
+  ↳ app/views/events/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-23 18:52:52.533847')[0m  [["attendee_id", 1]]
+  ↳ app/views/events/index.html.erb:19
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  Rendered events/index.html.erb within layouts/application (Duration: 53.4ms | Allocations: 16165)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 220)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 62ms (Views: 48.9ms | ActiveRecord: 10.3ms | Allocations: 21767)
+
+
+Started DELETE "/sessions/1" for ::1 at 2020-05-23 21:53:00 +0300
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"qozDlnsTNxI9hTZz6KA2yDvwxpViZgIxP2VyDKatYsjvppRZYQ8LUZszVzzc0gApPtAWeITVLjhQgdJ6sWoWhg==", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 947)
+
+
+Started GET "/" for ::1 at 2020-05-23 21:53:00 +0300
+Processing by EventsController#index as HTML
+Redirected to http://localhost:3000/sessions/new
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 434)
+
+
+Started GET "/sessions/new" for ::1 at 2020-05-23 21:53:00 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 689)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.1ms | Allocations: 110)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.0ms | Allocations: 5452)
+
+
+Started POST "/sessions" for ::1 at 2020-05-23 21:53:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"RVz5e+W8Umcvn6IWBUNmZvhut6qN//UvAeVcxxbNo08Adq60/6BuJIkpw1kxMVCH/U5nR2tM2SZuAfyxAQrXAQ==", "user"=>{"name"=>"Marios"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Marios"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:9:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Marios"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1498)
+
+
+Started GET "/" for ::1 at 2020-05-23 21:53:04 +0300
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-23 18:53:04.620460')[0m  [["attendee_id", 1]]
+  ↳ app/views/events/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:9
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-23 18:53:04.627356')[0m  [["attendee_id", 1]]
+  ↳ app/views/events/index.html.erb:19
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/events/index.html.erb:22
+  Rendered events/index.html.erb within layouts/application (Duration: 14.2ms | Allocations: 11534)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_navbar.html.erb (Duration: 0.2ms | Allocations: 220)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `welcome_links'
+Completed 200 OK in 29ms (Views: 26.7ms | ActiveRecord: 0.7ms | Allocations: 17045)
+
+

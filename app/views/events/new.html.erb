@@ -1,12 +1,36 @@
 <h1>Create an Event</h1>
 <div class="card">
+
   <ul>
   <%= form_for @event do |f| %>
-    <%= f.label :description %>
-    <%= f.text_field :description, placeholder: "Sky Diving", required: true %>
-    <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
-    <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
-    <%= f.submit :Create %>
+    <div class="form-group pt-2">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Sky Diving", required: true, class: 'form-control' %>
+      <small class='form-text text-muted'>Event's description & Title</small>
+      <br />
+      <%= f.date_field :date, placeholder: "2020-08-06", required: true %>
+      <%= f.text_field :location, placeholder: "Greece/Patras", required: true %>
+      <br /> <br />
+      <%= f.file_field :image %>
+      <%= f.submit :Create, class: "btn btn-primary" %>
+    </div>
   <% end %>
   </ul>
 </div>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
