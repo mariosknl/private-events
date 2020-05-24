@@ -11,8 +11,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user = User.find_by(name: @user.name)
-      redirect_to new_user_path
-      # render 'sessions/new' unless signed_in?
+      if signed_in?
+        redirect_to new_user_path
+      else
+        create_session(@user.id)
+        redirect_to user_path(@user.id)
+      end
     else
       render :new
     end

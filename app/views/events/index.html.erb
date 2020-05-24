@@ -17,11 +17,15 @@ Upcoming Events
     <tbody>
       <% current_user.attended_events.upcoming_events.each do |event| %>
         <tr class="table-primary">
-          <td><span class="badge badge-success p-2">Upcoming</span></td>
-            <td class="text-success"><strong><%= event.description %></strong></td>
-            <td><%= event.creator.name %></td>
-            <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-            <td><%= event.location %></td>
+            <td class="align-middle">
+              <span class="badge badge-success p-2">
+                Upcoming
+              </span>
+            </td>
+            <td class="text-success align-middle"><strong><%= event.description %></strong></td>
+            <td class="align-middle"><%= event.creator.name %></td>
+            <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
+            <td class="align-middle"><%= event.location %></td>
             <td class="text-center"><%= link_to 'Show', event_path(event.id), class: "btn btn-success btn-sm px-5" %></td>
         </tr>
         <% end %>
@@ -45,12 +49,12 @@ Previous Events
     <tbody>
       <% current_user.attended_events.prev_events.each do |event| %>
         <tr class="table-secondary">
-          <td><span class="badge badge-warning p-2">Past</span></td>
-            <td class="text-secondary"><strong><%= event.description %></strong></td>
-            <td><%= event.creator.name %></td>
-            <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-            <td><%= event.location %></td>
-            <td class="text-center"><%= link_to 'Show', event_path(event.id), class: "btn btn-warning btn-sm px-5" %></td>
+          <td class="align-middle"><span class="badge badge-warning p-2">Past</span></td>
+            <td class="text-secondary align-middle"><strong><%= event.description %></strong></td>
+            <td class="align-middle"><%= event.creator.name %></td>
+            <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
+            <td class="align-middle"><%= event.location %></td>
+            <td class="text-center align-middle"><%= link_to 'Show', event_path(event.id), class: "btn btn-warning btn-sm px-5" %></td>
         </tr>
         <% end %>
     </tbody>

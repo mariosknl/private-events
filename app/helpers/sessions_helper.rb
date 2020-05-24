@@ -10,4 +10,8 @@ module SessionsHelper
   def signed_in?
     session[:current_user_id].nil? ? false : true
   end
+
+  def create_session(user_id)
+    session[:current_user_id] = user_id
+  end
 end
