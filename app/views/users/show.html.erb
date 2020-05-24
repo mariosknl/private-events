@@ -1,7 +1,7 @@
 
 <div class="container-fluid w-75 mb-5">
   <h3 class="text-center mt-4 text-white">
-    Events Lists <strong> <%= @user.name %> </strong> Created
+    Event List <strong> <%= @user.name %> </strong> Created
     <span class="btn btn-success ml-5 p-2">
       <%= link_to '+ New', new_event_path, class: "text-white p-2 nav-link link-color-danger" %>
     </span>
@@ -18,10 +18,11 @@
                 <th>Date</th>
                 <th>Location</th>
                 <th>Event Page</th>
+                <th>Delete</th>
               </tr>
           </thead>
           <tbody>
-            <% @events.each do |event| %>
+            <% @events.order(date: :desc).each do |event| %>
               <tr class="table-primary">
                 <td>
                   <%= badge_selector(event) %>
@@ -31,6 +32,7 @@
                 <td><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                 <td><%= event.location %></td>
                 <td><%= link_to 'Details', event_path(event.id), class: "btn btn-success btn-sm px-5" %></td>
+                <td><%= delete_upcoming_event_button(event) %></td>
               </tr>
               <% end %>
           </tbody>
@@ -38,7 +40,7 @@
 
     </div>
   </div>
-  <h3 class="text-center my-4 text-white">Events Lists <strong> <%= @user.name %> </strong> Invited </h3>
+  <h3 class="text-center my-4 text-white">Event List <strong> <%= @user.name %> </strong> Invited </h3>
   <div class="row">
     <div class="col-xl-6">
       <h5 class="text-center my-1 text-white">Upcoming</h5>

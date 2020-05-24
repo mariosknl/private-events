@@ -7,18 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user_names = ["Forger","Frodo", "Gandalf", "Legolas", "Boromir", "Sauron",
-  "Pippin", "Bilbo", "Saruman","Galadriel", "Madril", "Elanor", "Uruk", "Merry",
-    "Gimli", "Gollum", "King", "Smeagol", "Isildur"]
+user_names = ["Pippin", "Bilbo", "Elanor", "Uruk", "Gimli", "Gollum",
+              "King", "Smeagol", "Isildur","Forger",
+              "Legolas", "Boromir", "Sauron", "Gandalf", "Frodo"]
 
 user_names.each do |name|
   User.create(name: name)
 end
 
 team_1 = ["Forger", "Frodo", "Gandalf", "Legolas", "Boromir",
-  "Pippin", "Bilbo", "Galadriel", "Elanor", "Merry",
-    "Gimli", "King", "Isildur"]
-team_2 = ["Sauron", "Saruman", "Madril", "Uruk", "Gollum", "Smeagol"]
+  "Pippin", "Bilbo", "Elanor", "Gimli", "King", "Isildur"]
+team_2 = ["Sauron", "Uruk", "Gollum", "Smeagol"]
 
 events = [
   ["Forger","Forging One Ring","Mountains","1600-02-06 10:00"],
@@ -29,7 +28,10 @@ events = [
   ["Bilbo","Finding the Ring Celebration","Hobitton","1941-10-10 10:10"],
   ["Gollum","Search For The Ring","Mountains","1950-06-12"],
   ["Bilbo", "Bilbo's Party", "Hobbiton", "2001-09-22 12:00" ],
-  ["Frodo","Taking The Ring Back To The Mordor","Mordor","2021-02-02 02:02"],
+  ["Frodo","Taking The Ring Back To The Mordor","Mordor","2021-04-06 02:02"],
+  ["Frodo","Having A Trip To The Mountains","Green Mountain","2019-03-05 02:02"],
+  ["Frodo","Fighting With Passion","Mordor","2021-01-04 02:02"],
+  ["Frodo","Believing The Ring","Hobitton","2021-04-08 02:02"],
   ["Legolas","Arrow Party","Garden","2021-03-01 03:01"],
   ["Gandalf","Looking At The Dawn","Mountains","2021-03-02 05:30"],
   ["Boromir","War Field","Undying Lands","2023-05-05 12:30"],
