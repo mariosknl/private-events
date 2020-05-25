@@ -14,12 +14,16 @@ Sign in with your name...
   <% end %>
 </div>
 
-<h3 class="mt-5 mb-1 text-center text-success">
-  <strong>
-    Quick Access:
-  </strong>
-</h3>
-<div class="border border-success w-50 mx-auto mt-1 mb-5">
+<div class="mx-auto my-4 w-25 text-success text-center">
+<span class="badge badge-pill badge-light text-success">
+  <h4>
+    <strong>
+      Quick Access:
+    </strong>
+    </h4>
+  </span>
+</div>
+<div class="border border-light w-50 mx-auto mt-1 mb-5">
 
   <div class="d-flex w-75 mx-auto my-4 justify-content-around flex-wrap">
     <% @users.order(id: :desc).each do |user| %>
