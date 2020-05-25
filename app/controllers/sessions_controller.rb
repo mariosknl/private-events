@@ -7,12 +7,12 @@ class SessionsController < ApplicationController
   def create
     @name = params[:user][:name]
     @user = User.new(name: @name)
-    if User.find_by(name: @name)
+    if User.find_by(name: @name).nil?
+      render :new
+    else
       @id = User.find_by(name: @name).id
       session[:current_user_id] = @id
       redirect_to user_path(@id)
-    else
-      render :new
     end
   end
 

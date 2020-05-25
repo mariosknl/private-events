@@ -6986,3 +6986,1496 @@ Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3
   [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:06:13.122968"], ["updated_at", "2020-05-25 13:06:13.122968"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:06:13.129885"], ["updated_at", "2020-05-25 13:06:13.129885"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.140011"], ["updated_at", "2020-05-25 13:06:13.140011"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 21.2ms | Allocations: 5461)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.2ms | Allocations: 146)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.4ms | Allocations: 142)
+  Rendered layouts/_navbar.html.erb (Duration: 1.9ms | Allocations: 916)
+Completed 200 OK in 112ms (Views: 107.2ms | ActiveRecord: 0.9ms | Allocations: 28768)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 562)
+Started GET "/users/3" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 3]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:06:13.287411')[0m  [["attendee_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:06:13.287585')[0m  [["attendee_id", 3]]
+  Rendered users/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1712)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.3ms | Allocations: 144)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.4ms | Allocations: 133)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.5ms | Allocations: 226)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.2ms | Allocations: 157)
+  Rendered layouts/_navbar.html.erb (Duration: 2.9ms | Allocations: 1540)
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 0.9ms | Allocations: 8194)
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.345573"], ["updated_at", "2020-05-25 13:06:13.345573"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1666)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 222)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 4303)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1366)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1785)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.369537"], ["updated_at", "2020-05-25 13:06:13.369537"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1619)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.2ms | Allocations: 4213)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 413)
+Started GET "/users/3" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:06:13.396592')[0m  [["attendee_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:06:13.396731')[0m  [["attendee_id", 3]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.1ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.4ms | Allocations: 124)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 573)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.3ms | Allocations: 4244)
+  [1m[35m (0.8ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.409871"], ["updated_at", "2020-05-25 13:06:13.409871"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1619)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 4213)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1061)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1473)
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.432953"], ["updated_at", "2020-05-25 13:06:13.432953"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:06:13.434110"], ["updated_at", "2020-05-25 13:06:13.434110"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2006)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 212)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.7ms | Allocations: 4600)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/3" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:06:13.471745')[0m  [["attendee_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:06:13.471916')[0m  [["attendee_id", 3]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 561)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.4ms | Allocations: 4229)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1357)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.1ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.6ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.5ms | Allocations: 573)
+Completed 200 OK in 15ms (Views: 8.9ms | ActiveRecord: 0.1ms | Allocations: 8698)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:06:13.515655"], ["updated_at", "2020-05-25 13:06:13.515655"], ["creator_id", 3], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.7ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 1], ["created_at", "2020-05-25 13:06:13.524006"], ["updated_at", "2020-05-25 13:06:13.524006"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 14ms (ActiveRecord: 1.6ms | Allocations: 6374)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.6ms | Allocations: 182)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 4.6ms | Allocations: 2426)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.4ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 573)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.4ms | Allocations: 6001)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:06:13.555373"], ["updated_at", "2020-05-25 13:06:13.555373"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:06:13.556321"], ["updated_at", "2020-05-25 13:06:13.556321"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 2012)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 222)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.4ms | Allocations: 4618)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/3" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:06:13.583389')[0m  [["attendee_id", 3]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:06:13.583518')[0m  [["attendee_id", 3]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 572)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 575)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 4248)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 746)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 559)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.1ms | Allocations: 4037)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:06:13.614647"], ["updated_at", "2020-05-25 13:06:13.614647"], ["creator_id", 3], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 3], ["attended_event_id", 1], ["created_at", "2020-05-25 13:06:13.616799"], ["updated_at", "2020-05-25 13:06:13.616799"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 5ms (ActiveRecord: 0.7ms | Allocations: 2277)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:06:13 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.1ms | Allocations: 66)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1370)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 558)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.3ms | Allocations: 4696)
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:08:04.340264"], ["updated_at", "2020-05-25 13:08:04.340264"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:08:04.349822"], ["updated_at", "2020-05-25 13:08:04.349822"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.358891"], ["updated_at", "2020-05-25 13:08:04.358891"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 6234)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.3ms | Allocations: 146)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.3ms | Allocations: 142)
+  Rendered layouts/_navbar.html.erb (Duration: 1.6ms | Allocations: 916)
+Completed 200 OK in 80ms (Views: 73.2ms | ActiveRecord: 0.5ms | Allocations: 27797)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/5
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 562)
+Started GET "/users/5" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:08:04.478613')[0m  [["attendee_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:08:04.478795')[0m  [["attendee_id", 5]]
+  Rendered users/show.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1712)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.4ms | Allocations: 144)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.4ms | Allocations: 133)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 3.5ms | Allocations: 226)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.2ms | Allocations: 39)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.6ms | Allocations: 157)
+  Rendered layouts/_navbar.html.erb (Duration: 10.5ms | Allocations: 1540)
+Completed 200 OK in 21ms (Views: 16.7ms | ActiveRecord: 0.8ms | Allocations: 8197)
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.510658"], ["updated_at", "2020-05-25 13:08:04.510658"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 2439)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 222)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.3ms | Allocations: 5077)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1366)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1785)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.540520"], ["updated_at", "2020-05-25 13:08:04.540520"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2392)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.7ms | Allocations: 212)
+Completed 200 OK in 15ms (Views: 13.8ms | ActiveRecord: 0.4ms | Allocations: 4987)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/5
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms | Allocations: 413)
+Started GET "/users/5" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:08:04.581347')[0m  [["attendee_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:08:04.581507')[0m  [["attendee_id", 5]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.7ms | Allocations: 124)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.5ms | Allocations: 573)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.4ms | Allocations: 4243)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.594860"], ["updated_at", "2020-05-25 13:08:04.594860"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 2392)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 4987)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1061)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.1ms | Allocations: 1473)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.623218"], ["updated_at", "2020-05-25 13:08:04.623218"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:08:04.624358"], ["updated_at", "2020-05-25 13:08:04.624358"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 2778)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.4ms | Allocations: 5374)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/5
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/5" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:08:04.669968')[0m  [["attendee_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:08:04.670107')[0m  [["attendee_id", 5]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 561)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.4ms | Allocations: 4233)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1357)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 40)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 573)
+Completed 200 OK in 20ms (Views: 14.0ms | ActiveRecord: 0.1ms | Allocations: 8699)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:08:04.717775"], ["updated_at", "2020-05-25 13:08:04.717775"], ["creator_id", 5], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 1], ["created_at", "2020-05-25 13:08:04.724241"], ["updated_at", "2020-05-25 13:08:04.724241"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 10ms (ActiveRecord: 0.7ms | Allocations: 6380)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.4ms | Allocations: 182)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 3.9ms | Allocations: 2654)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.2ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 573)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.4ms | Allocations: 6240)
+  [1m[35m (32.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:08:04.778398"], ["updated_at", "2020-05-25 13:08:04.778398"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:08:04.779616"], ["updated_at", "2020-05-25 13:08:04.779616"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.1ms | Allocations: 2784)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 222)
+Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.5ms | Allocations: 5391)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/5
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/5" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:08:04.810570')[0m  [["attendee_id", 5]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:08:04.810794')[0m  [["attendee_id", 5]]
+  Rendered users/show.html.erb within layouts/application (Duration: 5.5ms | Allocations: 572)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.1ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 575)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.4ms | Allocations: 4248)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 746)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 559)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.1ms | Allocations: 4040)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:08:04.848236"], ["updated_at", "2020-05-25 13:08:04.848236"], ["creator_id", 5], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 5], ["attended_event_id", 1], ["created_at", "2020-05-25 13:08:04.850394"], ["updated_at", "2020-05-25 13:08:04.850394"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms | Allocations: 2271)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:08:04 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.1ms | Allocations: 66)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1599)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.2ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 558)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.3ms | Allocations: 4920)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:09:14.371222"], ["updated_at", "2020-05-25 13:09:14.371222"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:09:14.380921"], ["updated_at", "2020-05-25 13:09:14.380921"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["id", 5], ["name", "Test User"], ["created_at", "2020-05-25 13:09:14.386744"], ["updated_at", "2020-05-25 13:09:14.386744"]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("id", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["id", 5], ["name", "Test User"], ["created_at", "2020-05-25 13:09:14.395632"], ["updated_at", "2020-05-25 13:09:14.395632"]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["id", 5], ["name", "Test User"], ["created_at", "2020-05-25 13:09:14.397115"], ["updated_at", "2020-05-25 13:09:14.397115"]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["id", 5], ["name", "Test User"], ["created_at", "2020-05-25 13:09:14.398324"], ["updated_at", "2020-05-25 13:09:14.398324"]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:14.399501"], ["updated_at", "2020-05-25 13:09:14.399501"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:09:14.400362"], ["updated_at", "2020-05-25 13:09:14.400362"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 7390)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.3ms | Allocations: 146)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.3ms | Allocations: 142)
+  Rendered layouts/_navbar.html.erb (Duration: 2.0ms | Allocations: 916)
+Completed 200 OK in 80ms (Views: 73.3ms | ActiveRecord: 0.7ms | Allocations: 29081)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/7
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 562)
+Started GET "/users/7" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 7]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:14.514960')[0m  [["attendee_id", 7]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:14.515131')[0m  [["attendee_id", 7]]
+  Rendered users/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1712)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.3ms | Allocations: 144)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 1.4ms | Allocations: 226)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.5ms | Allocations: 157)
+  Rendered layouts/_navbar.html.erb (Duration: 4.2ms | Allocations: 1540)
+Completed 200 OK in 15ms (Views: 10.1ms | ActiveRecord: 0.7ms | Allocations: 8199)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1348)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 40)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 573)
+Completed 200 OK in 13ms (Views: 7.1ms | ActiveRecord: 0.1ms | Allocations: 8635)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:09:14.560548"], ["updated_at", "2020-05-25 13:09:14.560548"], ["creator_id", 7], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 1], ["created_at", "2020-05-25 13:09:14.566759"], ["updated_at", "2020-05-25 13:09:14.566759"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 10ms (ActiveRecord: 0.7ms | Allocations: 6364)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.4ms | Allocations: 182)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 5.3ms | Allocations: 2881)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.1ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 573)
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.4ms | Allocations: 6454)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:14.584757"], ["updated_at", "2020-05-25 13:09:14.584757"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:09:14.585748"], ["updated_at", "2020-05-25 13:09:14.585748"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 3556)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 222)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.6ms | Allocations: 6163)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/7
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/7" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 7]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:14.612378')[0m  [["attendee_id", 7]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:14.612521')[0m  [["attendee_id", 7]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 571)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 575)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.3ms | Allocations: 4247)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 746)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.0ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 559)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms | Allocations: 4054)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:09:14.650833"], ["updated_at", "2020-05-25 13:09:14.650833"], ["creator_id", 7], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 7], ["attended_event_id", 1], ["created_at", "2020-05-25 13:09:14.652835"], ["updated_at", "2020-05-25 13:09:14.652835"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 5ms (ActiveRecord: 0.6ms | Allocations: 2279)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:09:14 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.1ms | Allocations: 66)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1827)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.2ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.0ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 558)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.3ms | Allocations: 5148)
+  [1m[35m (1.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:09:50.194690"], ["updated_at", "2020-05-25 13:09:50.194690"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kubilay"], ["created_at", "2020-05-25 13:09:50.203842"], ["updated_at", "2020-05-25 13:09:50.203842"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.210674"], ["updated_at", "2020-05-25 13:09:50.210674"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 10.1ms | Allocations: 7796)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.3ms | Allocations: 146)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.3ms | Allocations: 142)
+  Rendered layouts/_navbar.html.erb (Duration: 1.8ms | Allocations: 916)
+Completed 200 OK in 81ms (Views: 74.3ms | ActiveRecord: 0.7ms | Allocations: 29527)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/9
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 562)
+Started GET "/users/9" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 9]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:50.330581')[0m  [["attendee_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:50.330780')[0m  [["attendee_id", 9]]
+  Rendered users/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1712)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.3ms | Allocations: 144)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.5ms | Allocations: 226)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.2ms | Allocations: 157)
+  Rendered layouts/_navbar.html.erb (Duration: 2.8ms | Allocations: 1540)
+Completed 200 OK in 16ms (Views: 10.6ms | ActiveRecord: 1.3ms | Allocations: 8187)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.351760"], ["updated_at", "2020-05-25 13:09:50.351760"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 6.9ms | Allocations: 3960)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 222)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.6ms | Allocations: 6567)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1345)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1761)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.382287"], ["updated_at", "2020-05-25 13:09:50.382287"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 7.0ms | Allocations: 3954)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.7ms | Allocations: 6549)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/9
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/9" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 9]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:50.414335')[0m  [["attendee_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:50.414745')[0m  [["attendee_id", 9]]
+  Rendered users/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.5ms | Allocations: 124)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 573)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.6ms | Allocations: 4233)
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.427051"], ["updated_at", "2020-05-25 13:09:50.427051"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.7ms | Allocations: 3954)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.6ms | Allocations: 6549)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Wrong User Name"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Wrong User Name"], ["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1041)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1453)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.453300"], ["updated_at", "2020-05-25 13:09:50.453300"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:09:50.454714"], ["updated_at", "2020-05-25 13:09:50.454714"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 10]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 14.0ms | Allocations: 4341)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 212)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.9ms | Allocations: 6949)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/9
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/9" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:50.505241')[0m  [["attendee_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:50.505412')[0m  [["attendee_id", 9]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 567)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.1ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.5ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 561)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.3ms | Allocations: 4229)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1352)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 40)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.4ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 573)
+Completed 200 OK in 14ms (Views: 8.5ms | ActiveRecord: 0.1ms | Allocations: 8663)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:09:50.549872"], ["updated_at", "2020-05-25 13:09:50.549872"], ["creator_id", 9], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 1], ["created_at", "2020-05-25 13:09:50.557474"], ["updated_at", "2020-05-25 13:09:50.557474"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 12ms (ActiveRecord: 0.9ms | Allocations: 6367)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.3ms | Allocations: 182)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 3.7ms | Allocations: 3109)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.4ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 573)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.4ms | Allocations: 6680)
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["created_at", "2020-05-25 13:09:50.579550"], ["updated_at", "2020-05-25 13:09:50.579550"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test User2"], ["created_at", "2020-05-25 13:09:50.580952"], ["updated_at", "2020-05-25 13:09:50.580952"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 10]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 9]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 8]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 7]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 4]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 3]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE "events"."creator_id" = ?[0m  [["creator_id", 1]]
+  Rendered sessions/new.html.erb within layouts/application (Duration: 8.0ms | Allocations: 4346)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 39)
+  Rendered sessions/_sign_out.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_navbar.html.erb (Duration: 0.3ms | Allocations: 222)
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.8ms | Allocations: 6953)
+Started POST "/sessions" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"name"=>"Test User"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Test User"], ["LIMIT", 1]]
+Redirected to http://www.example.com/users/9
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 412)
+Started GET "/users/9" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."creator_id" = ? ORDER BY "events"."date" DESC[0m  [["creator_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date > '2020-05-25 13:09:50.612209')[0m  [["attendee_id", 9]]
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "invitations" ON "events"."id" = "invitations"."attended_event_id" WHERE "invitations"."attendee_id" = ? AND (date < '2020-05-25 13:09:50.612343')[0m  [["attendee_id", 9]]
+  Rendered users/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 572)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 125)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 53)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 575)
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.3ms | Allocations: 4240)
+Started GET "/events/new" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 746)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.1ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 559)
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.1ms | Allocations: 4054)
+Started POST "/events" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#create as HTML
+  Parameters: {"event"=>{"description"=>"Test Event", "date"=>"2020-10-10", "location"=>"Ankara"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Create (0.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "location", "created_at", "updated_at", "creator_id", "description") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date", "2020-10-10 00:00:00"], ["location", "Ankara"], ["created_at", "2020-05-25 13:09:50.645257"], ["updated_at", "2020-05-25 13:09:50.645257"], ["creator_id", 9], ["description", "Test Event"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/events/1
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Create (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("attendee_id", "attended_event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["attendee_id", 9], ["attended_event_id", 1], ["created_at", "2020-05-25 13:09:50.647102"], ["updated_at", "2020-05-25 13:09:50.647102"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms | Allocations: 2261)
+Started GET "/events/1" for 127.0.0.1 at 2020-05-25 16:09:50 +0300
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered events/_delete_event.html.erb (Duration: 0.5ms | Allocations: 66)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "invitations" ON "users"."id" = "invitations"."attendee_id" WHERE "invitations"."attended_event_id" = ?[0m  [["attended_event_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered events/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2055)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_create_new_event.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_events_calendar_links.html.erb (Duration: 0.0ms | Allocations: 33)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered layouts/_my_events_links.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered sessions/_sign_up.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered sessions/_sign_in.html.erb (Duration: 0.0ms | Allocations: 52)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 558)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 1.1ms | Allocations: 5389)
+  [1m[35m (0.8ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m

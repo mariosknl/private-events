@@ -9,7 +9,7 @@ RSpec.feature 'Authentications', type: :feature do
   it 'redirects to root after log in' do
     fill_in 'user_name', with: 'Test User'
     click_button 'Sign In'
-    expect(page).to have_current_path(root_path)
+    expect(page).to have_current_path(user_path(User.last.id))
   end
 
   it 'redirects to Sign In page when user name not exists' do
