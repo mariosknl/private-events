@@ -14,4 +14,9 @@ module SessionsHelper
   def create_session(user_id)
     session[:current_user_id] = user_id
   end
+
+  def create_session_and_redirect(user)
+    create_session(user.id)
+    redirect_to user_path(user.id)
+  end
 end

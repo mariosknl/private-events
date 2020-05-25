@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    @users = User.all
+    @names = User.all
     @user = User.new
   end
 
@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @name = params[:user][:name]
     @user = User.new(name: @name)
     if User.find_by(name: @name).nil?
+      @names = User.all
       render :new
     else
       @id = User.find_by(name: @name).id
