@@ -2,6 +2,8 @@
 
 In this Ruby on Rails project we are creating a website similar to Eventbrite. Users can create events and invite people to these events. Users that have accepted the invitation will also be able to invite other users.
 
+# [LIVE LINK](https://stormy-thicket-33445.herokuapp.com/)
+
 # Authors
 
 Marios Kanellopoulos
@@ -26,11 +28,25 @@ Kubilay Caglayan
 - From there you can create new user.
 - After you create a new user, you can create new events and invite other people.
 
+# Models
+- User
+- Event
+- Invitation
+
+# Associations
+- User can create events and also send invitation to other users.
+- A User can only see an event if only it has been invited to. The creator of the event is automatically being invited to that event.
+- Invited Users are also able to invite other users to the event.
+
 # Home Page
 ![private events](https://user-images.githubusercontent.com/60448833/82820778-78b5d480-9eab-11ea-9ac2-c06a3b41d29d.png)
 
 # Automated Test Section
-There are no automated test for this project yet.
+- Used RSpec for browser-side test.
+- Used Capybara gem for client-side(integration) tests.
+
+- run rspec in your terminal to run the tests.
+
 
 # Feature & Issues Section
 This is an open source project. Feel free to add your feedback. If, for any reason, this project doesn't work as supposed to be in your computer, create an issue so we can help you out with it. Lastly, you can request for a feature to be added.
