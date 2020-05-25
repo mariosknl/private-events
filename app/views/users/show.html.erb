@@ -27,7 +27,12 @@
                 <td class="align-middle">
                   <%= badge_selector(event) %>
                 </td>
-                <td class="align-middle"><%= event.description %></td>
+                <td class="align-middle">
+                  <%= event.description %>
+                  <div class="badge badge-pill badge-info">
+                    <%= event.attendees.count %>
+                  </div> 
+                </td>
                 <td class="align-middle"><%= event.creator.name %></td>
                 <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
                 <td class="align-middle"><%= event.location %></td>
