@@ -15,7 +15,7 @@ Upcoming Events
         </tr>
     </thead>
     <tbody>
-      <% current_user.attended_events.upcoming_events.each do |event| %>
+      <% Event.all.upcoming_events.each do |event| %>
         <tr class="table-primary">
             <td class="align-middle">
               <span class="badge badge-success p-2">
@@ -47,7 +47,7 @@ Previous Events
         </tr>
     </thead>
     <tbody>
-      <% current_user.attended_events.prev_events.each do |event| %>
+      <% Event.all.prev_events.each do |event| %>
         <tr class="table-secondary">
           <td class="align-middle"><span class="badge badge-warning p-2">Past</span></td>
             <td class="text-secondary align-middle"><strong><%= event.description %></strong></td>

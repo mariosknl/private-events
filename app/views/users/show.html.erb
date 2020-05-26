@@ -22,7 +22,7 @@
               </tr>
           </thead>
           <tbody>
-            <% @events.order(date: :desc).each do |event| %>
+            <% @events.each do |event| %>
               <tr class="table-primary align-middle">
                 <td class="align-middle">
                   <%= badge_selector(event) %>
