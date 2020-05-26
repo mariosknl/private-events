@@ -10,11 +10,11 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = User.find(current_user_id).events.build
+    @event = current_user.events.build
   end
 
   def create
-    @event = User.find(current_user_id).events.build(event_params)
+    @event = current_user.events.build(event_params)
 
     if @event.save
       redirect_to event_path(@event.id)

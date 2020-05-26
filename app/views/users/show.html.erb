@@ -49,50 +49,11 @@
   <div class="row">
     <div class="col-xl-6">
       <h5 class="text-center my-1 text-white">Upcoming</h5>
-      <table class="table">
-          <thead class="thead-dark">
-              <tr>
-                  <th>Description</th>
-                  <th>Location</th>
-                  <th>Date</th>
-                  <th>Event Page</th>
-              </tr>
-          </thead>
-          <tbody>
-            <% @upcoming_events.each do |event| %>
-              <tr class="table-primary">
-                  <td class="align-middle"><%= event.description %></td>
-                  <td class="align-middle"><%= event.location %></td>
-                  <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-                  <td class="align-middle"><%= link_to 'Show', event_path(event.id), class: "btn btn-success btn-sm px-4" %></td>
-              </tr>
-              <% end %>
-          </tbody>
-      </table>
+      <%= render 'upcom_events_table' %>
     </div>
     <div class="col-xl-6">
       <h5 class="text-center my-1 text-white">Previous</h5>
-      <table class="table">
-          <thead class="thead-dark">
-              <tr>
-                  <th>Description</th>
-                  <th>Location</th>
-                  <th>Date</th>
-                  <th>Event Page</th>
-              </tr>
-          </thead>
-          <tbody>
-            <% @prev_events.each do |event| %>
-              <tr class="table-secondary">
-                  <td class="align-middle"><%= event.description %></td>
-                  <td class="align-middle"><%= event.location %></td>
-                  <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
-                  <td class="align-middle"><%= link_to 'Show', event_path(event.id), class: "btn btn-warning btn-sm px-4" %></td>
-              </tr>
-              <% end %>
-          </tbody>
-      </table>
-
+      <%= render 'prev_event_table' %>
     </div>
   </div>
 </div>

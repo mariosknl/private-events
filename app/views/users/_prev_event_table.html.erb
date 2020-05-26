@@ -1,0 +1,20 @@
+<table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Event Page</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @prev_events.each do |event| %>
+            <tr class="table-secondary">
+                <td class="align-middle"><%= event.description %></td>
+                <td class="align-middle"><%= event.location %></td>
+                <td class="align-middle"><%= event.date.strftime('%Y-%m-%d %H:%M %Z') %></td>
+                <td class="align-middle"><%= link_to 'Show', event_path(event.id), class: "btn btn-warning btn-sm px-4" %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
