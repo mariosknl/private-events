@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :restrict_new_event
   after_action :invite_creator, only: [:create]
   def index
     @events = Event.all.order('created_at DESC')
@@ -48,6 +49,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def restrict_new_event
+    redirect_to new_session_path unless signed_in?
+  end
 
   def event_params
     params.require(:event).permit(:description, :date, :location, :time)

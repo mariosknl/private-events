@@ -40,4 +40,8 @@ module ApplicationHelper
   def current_path
     request.env['PATH_INFO']
   end
+
+  def sign_up_links
+    render 'sessions/sign_up' unless signed_in?
+  end
 end
