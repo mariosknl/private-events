@@ -2,7 +2,7 @@
 
 In this Ruby on Rails project we are creating a website similar to Eventbrite. Users can create events and invite people to these events. Users that have accepted the invitation will also be able to invite other users.
 
-# [LIVE LINK](https://stormy-thicket-33445.herokuapp.com/)
+# [LIVE LINK](https://private-events-lotr.herokuapp.com/)
 
 # Authors
 
