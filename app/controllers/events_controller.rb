@@ -36,8 +36,10 @@ class EventsController < ApplicationController
 
     if @event.date < Time.now
       render :show_past
-    else
+    elsif current_user.can_invite_others?(@event.id)
       render :show
+    else
+      render :show_not_invited
     end
   end
 
