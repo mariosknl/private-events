@@ -4,18 +4,6 @@ In this Ruby on Rails project, we are creating a website similar to Eventbrite. 
 
 # [LIVE LINK](https://stormy-thicket-33445.herokuapp.com/)
 
-# Authors
-
-Marios Kanellopoulos
-- Github: [@mariosknl](https://github.com/mariosknl)
-- Twitter: [@mariosknl](https://twitter.com/MariosKnl)
-- Linkedln: [marios-kanellopoulos](https://www.linkedin.com/in/marios-kanellopoulos)
-
-Kubilay Caglayan
-- Github: [@kubilaycaglayan](https://github.com/kubilaycaglayan)
-- Twitter: [@kbcaglayan](https://twitter.com/kbcaglayan)
-- Linkedln: [kubilay-caglayan](https://www.linkedin.com/in/kubilaycaglayan/)
-
 # How to Run Code
 - Run `git clone git@github.com:mariosknl/private-events.git` in the terminal.
 - cd into the directory.
@@ -60,6 +48,18 @@ Git
 VS Code
 Atom
 Bootstrap Framework
+
+# Authors
+
+👤 Marios Kanellopoulos
+- Github: [@mariosknl](https://github.com/mariosknl)
+- Twitter: [@mariosknl](https://twitter.com/MariosKnl)
+- Linkedln: [marios-kanellopoulos](https://www.linkedin.com/in/marios-kanellopoulos)
+
+👤 Kubilay Caglayan
+- Github: [@kubilaycaglayan](https://github.com/kubilaycaglayan)
+- Twitter: [@kbcaglayan](https://twitter.com/kbcaglayan)
+- Linkedln: [kubilay-caglayan](https://www.linkedin.com/in/kubilaycaglayan/)
 
 # Show your support
 Give a star if you like this project!
