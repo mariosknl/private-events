@@ -35,8 +35,8 @@ Kubilay Caglayan
 
 # Associations
 - Users can create events and also send invitations to other users.
-- A User can only see an event if only it has been invited to. The creator of the event is automatically being invited to that event.
-- Invited Users are also able to invite other users to the event.
+- A user can only see an event if they have been invited to it. The creator of the event is automatically invited to that event
+- Invited Users are also able to invite other users to the event..
 
 # Home Page
 ![private events](https://user-images.githubusercontent.com/60448833/82820778-78b5d480-9eab-11ea-9ac2-c06a3b41d29d.png)
@@ -49,7 +49,7 @@ Kubilay Caglayan
 
 
 # Feature & Issues Section
-This is an open-source project. Feel free to add your feedback. If, for any reason, this project doesn't work as supposed to be on your computer, create an issue so we can help you out with it. Lastly, you can request for a feature to be added.
+This is an open-source project. Feel free to add your feedback. If, for any reason, this project doesn't work as intended on your computer, create an issue so we can help with that.. Lastly, you can request for a feature to be added.
 
 [Issue Page](https://github.com/mariosknl/private-events/issues)
 
