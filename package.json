@@ -2,7 +2,7 @@
   "name": "private_events",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.4.0",
+    "@rails/webpacker": "5.4.3",
     "turbolinks": "5.2.0"
   },
   "version": "0.1.0",
